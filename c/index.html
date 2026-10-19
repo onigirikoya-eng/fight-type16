@@ -29,31 +29,25 @@ button.brand:hover{opacity:.75}
 .linkbtn:hover{border-color:var(--accent)}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 h1,h2,h3{text-wrap:balance;margin:0}
-.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,9vw,52px);line-height:1.15;letter-spacing:.01em}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,8.4vw,48px);line-height:1.18;letter-spacing:.01em}
 .hero h1 span{color:var(--accent)}
-.hero p{color:var(--muted);margin:14px 0 0}
-.axhead{margin:26px 0 10px !important;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--accent) !important}
-.axes{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
-.axr{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden}
-.axr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--accent),#3A6FD9)}
-.axn{font-family:var(--display);font-size:13px;color:var(--muted);width:1.6em;flex:0 0 auto}
-.axi{flex:0 0 38px;height:38px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center}
-.axi svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.axt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-.axt b{font-size:15px}
-.axp{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700}
-.axp em{font-style:normal;white-space:nowrap;flex:0 0 4.1em}.axp .r{text-align:right}.axp .l{color:var(--accent)}.axp .r{color:#3A6FD9}
-.axp i{flex:1;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 30%,#3A6FD9) 50%,#3A6FD9);position:relative}
-.axp i::before,.axp i::after{content:'';position:absolute;top:50%;width:10px;height:10px;border-radius:50%;transform:translateY(-50%);border:2px solid var(--surface)}
-.axp i::before{left:-2px;background:var(--accent)}.axp i::after{right:-2px;background:#3A6FD9}
-@media (min-width:560px){.axes{grid-template-columns:1fr 1fr}}
-.startwrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin:28px 0 24px}
-.startbtn{width:132px;height:132px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--accent) 70%,#fff),var(--accent) 60%);color:var(--accent-ink);font-family:var(--display);font-size:32px;letter-spacing:.08em;cursor:pointer;box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 40%,transparent),inset 0 -6px 0 rgba(0,0,0,.15);position:relative;transition:transform .15s}
-.startbtn:hover{transform:scale(1.04)}.startbtn:active{transform:scale(.96)}
-.startbtn::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:3px solid var(--accent);opacity:0}
-@media (prefers-reduced-motion:no-preference){.startbtn::after{animation:ring 2s ease-out infinite}}
-@keyframes ring{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.25);opacity:0}}
-.startnote{font-size:13px;font-weight:700;color:var(--muted)}
+.hero p{color:var(--muted);margin:10px 0 0;font-size:15px}
+.axhead{margin:18px 0 8px !important;font-size:12px !important;font-weight:700;letter-spacing:.12em;color:var(--accent) !important}
+.axes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.axr{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.axn{display:none}
+.axi{display:none}
+.axt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.axt b{font-size:13px;display:flex;align-items:center;gap:6px}
+.axt b svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.axp{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700}
+.axp em{font-style:normal;white-space:nowrap}.axp .l{color:var(--accent)}.axp .r{color:#3A6FD9}
+.axp i{flex:1;min-width:12px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--accent),#3A6FD9)}
+.startwrap{display:flex;flex-direction:column;align-items:center;gap:8px;margin:20px 0 22px}
+.startbtn{width:108px;height:108px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-family:var(--body);font-weight:900;font-size:24px;letter-spacing:.18em;padding-left:.18em;cursor:pointer;box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 32%,transparent);transition:transform .12s ease,box-shadow .12s ease}
+.startbtn:hover{transform:translateY(-2px);box-shadow:0 10px 20px color-mix(in srgb,var(--accent) 36%,transparent)}
+.startbtn:active{transform:translateY(1px);box-shadow:0 3px 8px color-mix(in srgb,var(--accent) 30%,transparent)}
+.startnote{font-size:12px;font-weight:700;color:var(--muted)}
 .primary{background:var(--accent);color:var(--accent-ink);border:0;font:inherit;font-weight:700;font-size:17px;padding:15px 24px;border-radius:12px;cursor:pointer;width:100%}
 .primary:hover{filter:brightness(1.06)}
 .ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);font:inherit;font-weight:500;padding:12px 16px;border-radius:12px;cursor:pointer}
@@ -99,9 +93,9 @@ textarea.cp{width:100%;min-height:150px;font:inherit;font-size:13px;background:v
 .prodrow .ph{flex:0 0 92px;background:#fff;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center;height:150px}
 .prodrow .ph img{max-height:100%;max-width:100%;object-fit:contain;display:block}
 .prodrow .tx{min-width:0;display:flex;flex-direction:column;gap:6px}
-.logos{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border-radius:12px;padding:10px 16px}
-.logos img{height:30px;width:auto;display:block;max-width:100%}
-.logos img.lt{height:34px}
+.logos{display:flex;align-items:center;justify-content:center;gap:16px;background:#fff;border-radius:12px;padding:8px 14px}
+.logos img{height:22px;width:auto;display:block;max-width:46%;object-fit:contain}
+.logos img.lt{height:24px}
 .unof{font-size:12px;color:var(--muted);margin:-8px 0 0}
 .card .ph2{background:#fff;border-radius:8px;height:64px;width:44px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .card .ph2 img{max-height:56px;max-width:36px}
@@ -224,18 +218,16 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
   </header>
 
   <div class="logos"><img class="lt" src="../img/logo-taisho.png" alt="大正製薬"><img src="../img/logo-lipod.png" alt="リポビタンD"></div>
-  <p class="unof">大学生による提案案です。大正製薬の公式ページではありません。</p>
 
   <section id="intro" class="hero">
-    <span class="ver">5段階で答える版・20問</span>
     <h1>あなたの<span>頑張り方</span>は、<br>どのタイプ?</h1>
-    <p>20問の文章に「そう思う〜そう思わない」の5段階で答えると、頑張り方を4つの軸で16タイプに分類。あなたの頑張り方を詳しく分析して、相性のいいタイプやおすすめのリポビタンDを紹介します。</p>
+    <p>20問に答えるだけで、あなたの頑張り方を16タイプに分析。相性のいいタイプや、おすすめのリポビタンDもわかります。</p>
     <p class="axhead">4つの軸で、あなたを分析</p>
     <ul class="axes">
-      <li class="axr"><span class="axn">01</span><span class="axi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 13V9M9 2h6M12 5V2"/></svg></span><span class="axt"><b>ペース</b><span class="axp"><em class="l">一気</em><i></i><em class="r">コツコツ</em></span></span></li>
-      <li class="axr"><span class="axn">02</span><span class="axi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 2 6 5.5"/></svg></span><span class="axt"><b>まわり</b><span class="axp"><em class="l">ひとり</em><i></i><em class="r">みんな</em></span></span></li>
-      <li class="axr"><span class="axn">03</span><span class="axi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span class="axt"><b>進め方</b><span class="axp"><em class="l">計画</em><i></i><em class="r">ひらめき</em></span></span></li>
-      <li class="axr"><span class="axn">04</span><span class="axi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 4h11l-2 4 2 4H6"/></svg></span><span class="axt"><b>原動力</b><span class="axp"><em class="l">結果</em><i></i><em class="r">過程</em></span></span></li>
+      <li class="axr"><span class="axn">01</span><span class="axt"><b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 13V9M9 2h6M12 5V2"/></svg>ペース</b><span class="axp"><em class="l">一気</em><i></i><em class="r">コツコツ</em></span></span></li>
+      <li class="axr"><span class="axn">02</span><span class="axt"><b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 2 6 5.5"/></svg>まわり</b><span class="axp"><em class="l">ひとり</em><i></i><em class="r">みんな</em></span></span></li>
+      <li class="axr"><span class="axn">03</span><span class="axt"><b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>進め方</b><span class="axp"><em class="l">計画</em><i></i><em class="r">ひらめき</em></span></span></li>
+      <li class="axr"><span class="axn">04</span><span class="axt"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 4h11l-2 4 2 4H6"/></svg>原動力</b><span class="axp"><em class="l">結果</em><i></i><em class="r">過程</em></span></span></li>
     </ul>
     <div class="startwrap"><button class="startbtn" id="start" type="button" aria-label="診断をはじめる">診断</button><span class="startnote">20問・約3分</span></div>
     <div class="parade" id="parade" aria-hidden="true"></div>
@@ -326,7 +318,7 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
     <p class="note" id="mMsg" aria-live="polite"></p>
   </div>
 </div>
-  <p class="note compliance">診断は楽しむためのもので、効果や効能を示すものではありません。提案はイメージ案です。商品の成分・分類は、パッケージや公式サイトで確認してください。</p>
+  <p class="note compliance">大学生による提案案です。大正製薬の公式ページではありません。診断は楽しむためのもので、効果や効能を示すものではありません。提案はイメージ案です。商品の成分・分類は、パッケージや公式サイトで確認してください。</p>
 </div>
 
 <script>
