@@ -1,0 +1,826 @@
+<!doctype html><html><head><meta charset=utf8><meta name="description" content="12問で頑張り方を16タイプに診断。大学生による企画案です。"><meta property="og:title" content="FIGHT TYPE 16 | 頑張り方タイプ診断"><meta property="og:description" content="あなたの頑張り方は16タイプのどれ? 大学生による企画案です。"><meta property="og:type" content="website"><meta property="og:url" content="https://onigirikoya-eng.github.io/fight-type16/"><meta name="robots" content="noindex"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>FIGHT TYPE 16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* Layout: 1カラムのカード式診断。質問は1問ずつ、結果は「タイプ名 → 提案カード」の順。 */
+:root{
+  --bg:#F1F4F8; --surface:#FFFFFF; --ink:#14202E; --muted:#5B6877; --line:#D8DFE8;
+  --accent:#D93A26; --accent-ink:#FFFFFF; --gold:#E8A300; --soft:#FBE9E5;
+  --display:'Dela Gothic One','Zen Kaku Gothic New',sans-serif;
+  --body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1622; --surface:#17222F; --ink:#EDF1F6; --muted:#9AA8B8; --line:#2A3a4B;
+  --accent:#FF6A52; --accent-ink:#1A0A06; --gold:#F5BA2E; --soft:#2B1E1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1622; --surface:#17222F; --ink:#EDF1F6; --muted:#9AA8B8; --line:#2A3a4B;
+  --accent:#FF6A52; --accent-ink:#1A0A06; --gold:#F5BA2E; --soft:#2B1E1F; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding-inline:16px;padding-block:20px 56px}
+.wrap{max-width:640px;margin-inline:auto;display:flex;flex-direction:column;gap:20px;min-width:0}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-family:var(--display);font-size:15px;letter-spacing:.04em}
+button.brand{background:none;border:0;padding:4px 0;color:var(--ink);cursor:pointer}
+button.brand:hover{opacity:.75}
+.brand b{color:var(--accent);font-weight:400}
+.linkbtn{background:none;border:1px solid var(--line);color:var(--ink);font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;cursor:pointer}
+.linkbtn:hover{border-color:var(--accent)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,9vw,52px);line-height:1.15;letter-spacing:.01em}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--muted);margin:14px 0 0}
+.axes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:22px 0}
+.axes div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--muted)}
+.axes b{display:block;color:var(--ink);font-size:14px}
+.primary{background:var(--accent);color:var(--accent-ink);border:0;font:inherit;font-weight:700;font-size:17px;padding:15px 24px;border-radius:12px;cursor:pointer;width:100%}
+.primary:hover{filter:brightness(1.06)}
+.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);font:inherit;font-weight:500;padding:12px 16px;border-radius:12px;cursor:pointer}
+.ghost:hover{border-color:var(--accent)}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+/* quiz */
+.prog{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.q{font-family:var(--display);font-weight:400;font-size:clamp(21px,5.6vw,27px);line-height:1.4;margin:14px 0 18px}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{text-align:left;background:var(--surface);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:16px 18px;font:inherit;font-size:16px;cursor:pointer;min-height:64px}
+.opt:hover{border-color:var(--accent)}
+.opt:active{background:var(--soft)}
+/* result */
+.badge{display:flex;flex-wrap:wrap;gap:6px}
+.badge span{font-size:12px;font-weight:700;border:1px solid var(--accent);color:var(--accent);padding:2px 10px;border-radius:999px}
+.rname{font-family:var(--display);font-weight:400;font-size:clamp(30px,8.4vw,46px);line-height:1.2;margin:10px 0 8px}
+.rdesc{margin:0;color:var(--muted)}
+.meters{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.meter{display:grid;grid-template-columns:5.2em 1fr 5.2em;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.meter .l{text-align:right}.meter .r{text-align:left}
+.meter .track{height:8px;background:var(--line);border-radius:99px;position:relative}
+.meter .dot{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%)}
+.meter .on{color:var(--ink);font-weight:700}
+.prop{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;gap:16px}
+.prop h2{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+.copyline{font-family:var(--display);font-size:clamp(22px,6vw,30px);line-height:1.4;margin:0;text-wrap:balance}
+.rows{display:flex;flex-direction:column;gap:14px;margin:0}
+.rows div{display:grid;grid-template-columns:6.5em 1fr;gap:12px;border-top:1px solid var(--line);padding-top:12px}
+.rows dt{font-size:13px;color:var(--muted);font-weight:700}
+.rows dd{margin:0;min-width:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions>*{flex:1 1 150px}
+textarea.cp{width:100%;min-height:150px;font:inherit;font-size:13px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px}
+/* product */
+.prod{border:2px solid var(--accent);border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:6px;background:var(--soft)}
+.prod .lab{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+.prod .pn{font-family:var(--display);font-size:clamp(22px,6vw,28px);line-height:1.3;margin:0}
+.prod .kind{font-size:13px;color:var(--muted)}
+.prod p{margin:4px 0 0}
+.prodrow{display:flex;gap:16px;align-items:center}
+.prodrow .ph{flex:0 0 92px;background:#fff;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center;height:150px}
+.prodrow .ph img{max-height:100%;max-width:100%;object-fit:contain;display:block}
+.prodrow .tx{min-width:0;display:flex;flex-direction:column;gap:6px}
+.logos{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border-radius:12px;padding:10px 16px}
+.logos img{height:30px;width:auto;display:block;max-width:100%}
+.logos img.lt{height:34px}
+.unof{font-size:12px;color:var(--muted);margin:-8px 0 0}
+.card .ph2{background:#fff;border-radius:8px;height:64px;width:44px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.card .ph2 img{max-height:56px;max-width:36px}
+.card .row{display:flex;gap:12px;align-items:center}
+.card .cx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sub{font-size:14px;border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+.sub b{font-weight:700}
+.pt{overflow-x:auto;margin-top:22px}
+.pt table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+.pt th,.pt td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+.pt th{font-size:12px;color:var(--muted)}
+.pt td:first-child{font-weight:700;white-space:nowrap}
+details.how{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
+details.how summary{cursor:pointer;font-weight:700}
+details.how ul{margin:8px 0 0;padding-left:1.2em}
+/* all 16 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card:hover{border-color:var(--accent)}
+.card small{color:var(--muted);font-size:12px}
+.card b{font-family:var(--display);font-weight:400;font-size:18px;line-height:1.3}
+.card em{font-style:normal;font-size:13px;color:var(--muted)}
+.chara{display:flex;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:18px}
+.chara .cimg{flex:0 0 96px;height:134px}
+.chara svg,.parade svg,.card .ph2.ch svg{width:100%;height:100%;display:block}
+.chara .ctx{min-width:0;display:flex;flex-direction:column;gap:2px}
+.chara .clab{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+.chara .cn{font-family:var(--display);font-size:clamp(24px,6.6vw,30px);line-height:1.3}
+.chara .cl{margin:2px 0 0;color:var(--muted)}
+.card .ph2.ch{background:none;width:52px;height:70px}
+.parade{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:0 0 22px}
+.parade div{aspect-ratio:120/182}
+@media (max-width:420px){.chara .cimg{flex-basis:78px;height:110px}}
+
+.ana{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.blk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px}
+.blk h3{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 8px}
+.blk p{margin:0}
+.blk ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+.blk.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.blk .rows div{grid-template-columns:7em 1fr}
+.mcard{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font:inherit;color:var(--ink);cursor:pointer}
+.mcard:hover{border-color:var(--accent)}
+.mcard .mimg{flex:0 0 58px;height:84px}.mcard .mimg svg{width:100%;height:100%;display:block}
+.mcard .mtx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mcard small{font-size:12px;color:var(--muted)}
+.mcard b{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.3}
+.mcard em{font-style:normal;font-size:12px;color:var(--accent);font-weight:700}
+.blk.mission{background:var(--soft);border-color:var(--accent)}
+.blk.mission p{font-weight:700;font-size:17px;line-height:1.6}
+.buys{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.buy{display:block;text-align:center;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:12px 14px;border-radius:10px}
+.buy.sub2{background:var(--surface);color:var(--ink);border:1px solid var(--line);font-weight:500;font-size:14px;padding:9px 12px}
+.buy:hover{filter:brightness(1.05)}
+@media (max-width:420px){.blk.two{grid-template-columns:1fr}}
+
+.share{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.share h3{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0}
+.share .note{margin:0}
+.sns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.snsb{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;border:0;font:inherit;font-size:12px;font-weight:700;color:#fff;text-decoration:none;cursor:pointer;padding:4px}
+.snsb.ig{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
+.snsb.ln{background:#06C755}
+.snsb.tt,.snsb.xx,.snsb.th{background:#111}
+.snsb:hover{filter:brightness(1.1)}
+@media (max-width:420px){.sns{grid-template-columns:repeat(3,1fr)}}
+.modal{position:fixed;inset:0;background:rgba(10,15,25,.6);display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;z-index:50}
+.mbox{background:var(--surface);color:var(--ink);border-radius:16px;padding:20px;width:100%;max-width:420px;display:flex;flex-direction:column;gap:12px;position:relative;margin:auto 0}
+.mbox h3{font-size:18px;margin:0}
+.mclose{position:absolute;top:8px;right:10px;background:none;border:0;font-size:26px;color:var(--muted);cursor:pointer}
+#mImg{width:60%;align-self:center;border-radius:10px;border:1px solid var(--line);min-height:120px;background:var(--bg)}
+#mSteps{margin:0;padding-left:1.3em;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.mact{display:flex;flex-direction:column;gap:8px}
+.mlab{font-size:13px;font-weight:700;color:var(--muted)}
+.compliance{background:var(--soft);border-radius:12px;padding:12px 14px}
+@media (max-width:420px){.rows div{grid-template-columns:1fr;gap:2px}.meter{grid-template-columns:4.6em 1fr 4.6em}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="brandHome" type="button" aria-label="トップに戻る">FIGHT <b>TYPE</b> 16</button>
+    <button class="linkbtn" id="toAll" type="button">16タイプ一覧</button>
+  </header>
+
+  <div class="logos"><img class="lt" src="img/logo-taisho.png" alt="大正製薬"><img src="img/logo-lipod.png" alt="リポビタンD"></div>
+  <p class="unof">大学生による提案案です。大正製薬の公式ページではありません。</p>
+
+  <section id="intro" class="hero">
+    <h1>あなたの<span>頑張り方</span>は、<br>どのタイプ?</h1>
+    <p>12問に答えると、頑張り方を4つの軸で16タイプに分類。あなたの頑張り方を詳しく分析して、相性のいいタイプやおすすめのリポビタンDを紹介します。</p>
+    <div class="axes">
+      <div><b>ペース</b>一気 ⇔ コツコツ</div>
+      <div><b>まわり</b>ひとり ⇔ みんな</div>
+      <div><b>進め方</b>計画 ⇔ ひらめき</div>
+      <div><b>原動力</b>結果 ⇔ 過程</div>
+    </div>
+    <div class="parade" id="parade" aria-hidden="true"></div>
+    <button class="primary" id="start" type="button">診断をはじめる(約1分)</button>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="prog"><span id="pn">1 / 12</span><div class="bar"><i id="pb"></i></div></div>
+    <h2 class="q" id="qt"></h2>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="result" hidden>
+    <div class="badge" id="rbadge"></div>
+    <h2 class="rname" id="rname"></h2>
+    <p class="rdesc" id="rdesc"></p>
+    <div class="chara"><div class="cimg" id="rcimg"></div><div class="ctx"><span class="clab">イメージキャラクター</span><b class="cn" id="rcname"></b></div></div>
+    <div class="meters" id="meters" style="margin-block:20px"></div>
+    <div class="ana">
+      <section class="blk"><h3>あなたはこんな人</h3><p id="xsum"></p></section>
+      <section class="blk two"><div><h3>強み</h3><ul id="xstr"></ul></div><div><h3>つまずきやすいところ</h3><ul id="xweak"></ul></div></section>
+      <section class="blk"><h3>頑張り方の特徴</h3><dl class="rows" id="xstyle"></dl></section>
+      <section class="blk"><h3>相性のいいタイプ</h3>
+        <button class="mcard" id="xmatch" type="button"><span class="mimg" id="xmimg"></span><span class="mtx"><small id="xmtag"></small><b id="xmname"></b><span id="xmwhy"></span><em>タップで詳しく見る</em></span></button></section>
+      <section class="blk mission"><h3>今週のがんばりミッション</h3><p id="xmission"></p></section>
+    </div>
+    <div class="prod" id="prodBox">
+      <span class="lab">あなたにおすすめのリポD</span>
+      <div class="prodrow">
+        <div class="ph"><img id="pimg" src="img/p-d.png" alt=""></div>
+        <div class="tx">
+          <h3 class="pn" id="pmain"></h3>
+          <span class="kind" id="pkind"></span>
+          <p id="pwhy"></p>
+        </div>
+      </div>
+      <div class="sub" id="psub"></div>
+      <div class="buys" id="pbuys"></div>
+    </div>
+    <section class="share">
+      <h3>結果をSNSで共有</h3>
+      <div class="sns">
+        <button class="snsb ig" id="sInsta" type="button">Instagram</button>
+        <a class="snsb ln" id="sLine" href="#" target="_blank" rel="noopener">LINE</a>
+        <button class="snsb tt" id="sTiktok" type="button">TikTok</button>
+        <a class="snsb xx" id="sX" href="#" target="_blank" rel="noopener">X</a>
+        <a class="snsb th" id="sThreads" href="#" target="_blank" rel="noopener">Threads</a>
+      </div>
+      <p class="note">InstagramとTikTokは、結果の画像と投稿文を用意します。</p>
+      <button class="linkbtn" id="sUrl" type="button">診断のURLをコピー</button>
+    </section>
+    <div class="actions" style="margin-top:16px">
+      <button class="ghost" id="retry" type="button">もう一度診断</button>
+      <button class="ghost" id="toAll2" type="button">16タイプ一覧</button>
+    </div>
+    <p class="note" id="copyMsg" style="margin-top:10px" aria-live="polite"></p>
+    <textarea class="cp" id="copyArea" readonly hidden></textarea>
+  </section>
+
+  <section id="all" hidden>
+    <h2 style="font-family:var(--display);font-weight:400;font-size:24px;margin-bottom:6px">16タイプ一覧</h2>
+    <p class="note" style="margin:0 0 14px">タイプを選ぶと提案の詳細が開きます。</p>
+    <div class="grid" id="grid"></div>
+    <div class="pt"><h3 style="font-size:16px;margin-bottom:6px">商品別の早見表</h3><table><thead><tr><th>商品</th><th>メインにするタイプ</th><th>サブにするタイプ</th></tr></thead><tbody id="ptb"></tbody></table></div>
+    <details class="how" style="margin-top:16px"><summary>商品の選び方の考え方</summary><ul>
+      <li>ほとんどのタイプは、定番のリポビタンD</li>
+      <li>気軽に選びたい・カロリーが気になる: リポビタンDライト(1本58kcal)</li>
+      <li>腰を据えて取り組む日: リポビタンD11(有効成分11種)</li>
+      <li>勝負の日の1本: リポビタンDハイパー(タウリン3000mg)</li>
+      <li>ここぞの特別な1本: リポビタンD PREMIUM(シリーズ最多の有効成分14種)</li></ul></details>
+    <div style="margin-top:16px"><button class="ghost" id="backIntro" type="button">診断に戻る</button></div>
+  </section>
+
+  <div class="modal" id="shareModal" hidden>
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="mclose" id="mClose" type="button" aria-label="閉じる">×</button>
+    <h3 id="mTitle"></h3>
+    <img id="mImg" alt="共有用の結果画像">
+    <ol id="mSteps"></ol>
+    <div class="mact"><button class="primary" id="mSave" type="button">画像を保存</button><button class="ghost" id="mNative" type="button" hidden>スマホの共有メニューで送る</button></div>
+    <label class="mlab" for="mCap">投稿文</label>
+    <textarea class="cp" id="mCap" readonly></textarea>
+    <button class="ghost" id="mCopy" type="button" style="width:100%">投稿文をコピー</button>
+    <p class="note" id="mMsg" aria-live="polite"></p>
+  </div>
+</div>
+  <p class="note compliance">診断は楽しむためのもので、効果や効能を示すものではありません。提案はイメージ案です。商品の成分・分類は、パッケージや公式サイトで確認してください。実施前に大正製薬の事前確認が必要です(効果の保証・気分への直接効果・体験談の表現は使用しない)。</p>
+</div>
+
+<script>
+const AX = {
+  pace:{A:'一気',B:'コツコツ',t:'ペース'},
+  who:{S:'ひとり',T:'みんな',t:'まわり'},
+  plan:{P:'計画',F:'ひらめき',t:'進め方'},
+  drive:{R:'結果',J:'過程',t:'原動力'}
+};
+const AXKEYS = ['pace','who','plan','drive'];
+
+// 各問: axis と、選択肢a/bが加点する側
+const QS = [
+  {ax:'pace', q:'レポートの締切は2週間後。あなたは?', a:['締切が近づいたら一気に仕上げる','A'], b:['毎日少しずつ進めておく','B']},
+  {ax:'who',  q:'課題や勉強をするなら?', a:['ひとりで静かな場所でやりたい','S'], b:['友達と集まって一緒にやりたい','T']},
+  {ax:'plan', q:'旅行に行くとき、近いのは?', a:['行き先も時間も先に決めておく','P'], b:['着いてから気分で決める','F']},
+  {ax:'drive',q:'頑張る一番の理由は?', a:['目標を達成したい、評価されたい','R'], b:['やっている時間が楽しい、成長を感じたい','J']},
+  {ax:'pace', q:'資格や試験の勉強、続けやすいのは?', a:['短期集中で一気に詰める','A'], b:['毎日決まった時間にコツコツ','B']},
+  {ax:'who',  q:'ゼミやバイトで大きな仕事が来た。どうしたい?', a:['自分の担当を黙々とやり切りたい','S'], b:['メンバーと声をかけ合って進めたい','T']},
+  {ax:'plan', q:'新しいことを始めるとき、あなたは?', a:['やり方を調べて準備してから','P'], b:['とりあえず始めて、やりながら考える','F']},
+  {ax:'drive',q:'努力が思うように報われなかったとき、近いのは?', a:['次は結果を出せるよう、やり方を見直す','R'], b:['過程が楽しかったから、それでOK','J']},
+  {ax:'pace', q:'好きなことにハマったときは?', a:['短い期間で一気に深掘りする','A'], b:['長く細く、ずっと続ける','B']},
+  {ax:'who',  q:'頑張ったあと、どう過ごしたい?', a:['ひとりでゆっくり余韻にひたる','S'], b:['誰かに話したり、一緒に盛り上がったりする','T']},
+  {ax:'plan', q:'普段の1日の予定は?', a:['前日までにだいたい決めておく','P'], b:['その日の流れと気分で決める','F']},
+  {ax:'drive',q:'言われて嬉しいのは?', a:['「すごい成果だね」','R'], b:['「楽しそうに頑張ってたね」','J']}
+];
+
+// キー = pace + who + plan + drive
+const T = {
+ ASPR:{n:'一点突破スナイパー', d:'狙いを決めたら、ここぞの一日に力を集めるタイプ。準備は静かに、本番は一撃。',
+  scene:'資格試験、面接、コンペなど「この日」と決めた本番の前日', time:'本番前日の夕方、準備を終えて机を片付けたあとの1本',
+  copy:'ここぞという時の、この1本。', touch:'試験期間の大学生協・駅ナカ売店。「本番前セット」としてレジ横に'},
+ ASPJ:{n:'没入クラフター', d:'自分のペースで深く潜り、作る時間そのものを味わうタイプ。段取りも楽しむ。',
+  scene:'制作、動画編集、レポートなど、腰を据えて取り組む夜', time:'作業を始める前の「はじまりの合図」として',
+  copy:'頑張りたい夜の、はじまりの1本。', touch:'作業用BGM配信やクリエイターの作業動画とのコラボ'},
+ ASFR:{n:'直前覚醒ストライカー', d:'締切が見えると一気にスイッチが入るタイプ。ひとりで集中して、きっちり結果を出す。',
+  scene:'提出前夜、締切直前のラストスパート', time:'「よし、やるか」と腰を上げるタイミングで',
+  copy:'あと少し、頑張る人を応援。', touch:'課題の締切が重なる時期のコンビニ。締切リマインドLINEとの連動'},
+ ASFJ:{n:'ゾーン突入アーティスト', d:'ひらめきで動き、夢中になると時間を忘れるタイプ。好きなことに一直線。',
+  scene:'創作、ゲーム、推し活の準備など、夢中になれる時間', time:'好きなことに向かう前のひと息に',
+  copy:'夢中になれる時間に、この1本。', touch:'ライブ会場や大型イベント周辺のコンビニ・自販機'},
+ ATPR:{n:'勝ち筋ディレクター', d:'ゴールから逆算して段取りを組み、チームを勝ちに導くタイプ。',
+  scene:'ゼミ発表、コンペ、大会など、チームで成果を狙う前日', time:'最終確認の前に、メンバーで1本ずつ',
+  copy:'チームで勝ちに行く日の、1本。', touch:'ゼミ・サークル向けの「チーム箱買いパック」。メンバー名入りラベル'},
+ ATPJ:{n:'祭り設計プロデューサー', d:'みんなが楽しめる場を計画し、準備の時間から盛り上げるタイプ。',
+  scene:'学祭やイベントの準備期間', time:'準備の合間、みんなで集まった休憩に',
+  copy:'準備から楽しい。頑張るみんなに。', touch:'学祭の出店・ブースでの配布(サンプリング)'},
+ ATFR:{n:'切り込みキャプテン', d:'先頭に立ち、勢いでチームを引っ張るタイプ。本番に強い。',
+  scene:'試合、大会、ライブ本番など、勝負の直前', time:'円陣の前、みんなで同時に',
+  copy:'円陣の代わりに、この1本。', touch:'運動系サークルの大会会場。円陣ステッカー付きのサンプリング'},
+ ATFJ:{n:'ムードメーカー花火', d:'場を明るくして、みんなで盛り上がるのが得意なタイプ。',
+  scene:'サークルの合宿、バイト仲間とのシフト前', time:'みんなが集まったその場で乾杯するように',
+  copy:'みんなで頑張る時間に、乾杯。', touch:'合宿・遠征向けの持ち運びパック。SNSで「乾杯」投稿を募集'},
+ BSPR:{n:'積み上げアスリート', d:'毎日の習慣を崩さず、目標に向けて着実に積み上げるタイプ。',
+  scene:'毎日の勉強、トレーニング、通学時間の自己研鑽', time:'毎日のルーティンの区切りに、いつもの1本',
+  copy:'毎日頑張るあなたの、いつもの1本。', touch:'習慣化アプリと連動した連続記録バッジ(飲用の記録ではなく、頑張りの記録)'},
+ BSPJ:{n:'マイペース職人', d:'自分のやり方を守り、ていねいに続けるタイプ。過程の手ごたえを大事にする。',
+  scene:'図書館や自習室での長時間の勉強、長めの通学', time:'休憩のタイミングを決めて、自分の時間に',
+  copy:'いつものペースを、静かに応援。', touch:'図書館・自習室・駅の近くの自販機'},
+ BSFR:{n:'ひそかな努力家', d:'人には見せず、工夫を重ねて着実に結果へ近づくタイプ。',
+  scene:'就活やインターンの準備、資格の勉強のすき間時間', time:'ひと区切りついた帰り道に',
+  copy:'見えないところで頑張る人を、応援。', touch:'キャリアセンター周辺や就活セミナー会場でのサンプリング'},
+ BSFJ:{n:'ゆる継続ハンター', d:'気分で選びつつ、好きなことを長く続けるタイプ。無理なく楽しむ。',
+  scene:'趣味、バイト、推し活など、長く続けていること', time:'ちょっと頑張りたい日の、気軽な1本',
+  copy:'続けたい毎日に、ちょうどいい1本。', touch:'コンビニのレジ横。お試しサイズでの手軽な購入'},
+ BTPR:{n:'縁の下マネージャー', d:'段取りよくメンバーを支え、チームの成果を支えるタイプ。',
+  scene:'バイトのシフト管理、ゼミの幹事など、まわりを支える場面', time:'みんなを支えたあと、自分にも1本。渡す側にも',
+  copy:'支える人にも、1本。', touch:'「ありがとうの1本」ギフト。LINEギフトやメッセージカード付き'},
+ BTPJ:{n:'チームの灯台', d:'長く続くチームの雰囲気を守り、みんなが戻れる場所をつくるタイプ。',
+  scene:'サークルやゼミの継続的な活動', time:'いつもの活動の合間に、みんなで',
+  copy:'忙しい毎日をサポート。いつものみんなで。', touch:'ゼミ室・部室の常備ボックス(定期お届けの提案)'},
+ BTFR:{n:'伴走コーチ', d:'友達の頑張りに気づいて、その場で声をかけて背中を押すタイプ。',
+  scene:'友達の試験前、面接前、大会前', time:'「がんばれ」と声をかける、そのとき',
+  copy:'がんばれの代わりに、1本。', touch:'友達に贈るエールボトル。メッセージを書き込めるラベルやLINEギフト'},
+ BTFJ:{n:'のんびり応援団', d:'気づくとまわりに人が集まるタイプ。一緒に過ごす時間のなかで頑張りを応援する。',
+  scene:'学食や友達との勉強会、みんなで過ごす時間', time:'みんなで集まった席で、シェアして',
+  copy:'一緒に頑張る時間に、ちょうどいい1本。', touch:'2本セットの「シェアパック」。1本は友達に渡せる設計'}
+};
+
+const PR = {
+ 'リポビタンD':['ドリンク 100mL','指定医薬部外品。タウリン1000mg配合の定番','img/p-d.png','https://store.shopping.yahoo.co.jp/taisho-directshop/1.html'],
+ 'リポビタンDライト':['ドリンク 100mL','指定医薬部外品。タウリン1000mg、1本58kcal','img/p-light.png','https://store.shopping.yahoo.co.jp/taisho-directshop/717.html'],
+ 'リポビタンD11':['ドリンク 100mL','指定医薬部外品。タウリン1500mg、有効成分11種配合','img/p-11.png','https://store.shopping.yahoo.co.jp/taisho-directshop/588.html'],
+ 'リポビタンDハイパー':['ドリンク 100mL','指定医薬部外品。タウリン3000mg、ローヤルゼリー配合','img/p-hyper.png','https://store.shopping.yahoo.co.jp/taisho-directshop/121.html'],
+ 'リポビタンD PREMIUM':['ドリンク 100mL','指定医薬部外品。タウリン3000mg、シリーズ最多の有効成分14種配合','img/p-premium.png','https://store.shopping.yahoo.co.jp/taisho-directshop/713.html']
+};
+const M = {
+ ASPR:['リポビタンD PREMIUM','リポビタンDハイパー','ここぞの一日に選びたい、シリーズ最多14種の有効成分を配合した特別な1本。'],
+ ASPJ:['リポビタンD11','リポビタンD','有効成分11種、タウリン1500mg配合。腰を据えて取り組む日に。'],
+ ASFR:['リポビタンD','リポビタンDハイパー','締切前でも、コンビニやドラッグストアですぐ手に取れる定番の1本。'],
+ ASFJ:['リポビタンDライト','リポビタンD','1本58kcal、スッキリした風味。好きなことに向かう日に気軽に。'],
+ ATPR:['リポビタンD','リポビタンD PREMIUM','チーム全員分をそろえやすい定番のD。勝負の日の自分用にはプレミアムも。'],
+ ATPJ:['リポビタンD','リポビタンDライト','配るなら、みんなが知っている定番のD。カロリーが気になる人にはライトも。'],
+ ATFR:['リポビタンDハイパー','リポビタンD','タウリン3000mg配合。黒と金の力強いボトルを、勝負の前に。'],
+ ATFJ:['リポビタンDライト','リポビタンD','1本58kcal。みんなで乾杯するように、気軽に選べる1本。'],
+ BSPR:['リポビタンD','リポビタンD11','毎日の頑張りに寄り添う、いつもの定番。'],
+ BSPJ:['リポビタンD11','リポビタンDライト','有効成分11種配合。自分のペースで腰を据えて取り組む日に。'],
+ BSFR:['リポビタンD','リポビタンD11','どこでも手に入る定番だから、すき間時間の頑張りにも。'],
+ BSFJ:['リポビタンDライト','リポビタンD','1本58kcal、スッキリした風味。無理なく続けたい毎日に。'],
+ BTPR:['リポビタンD','リポビタンD11','支えるみんなへの「ありがとう」に。公式の「感謝箱」でギフトにも。'],
+ BTPJ:['リポビタンD','リポビタンDライト','部室やゼミ室に置くなら、みんなが知っている定番のD。'],
+ BTFR:['リポビタンD','リポビタンDハイパー','「がんばれ」の代わりに渡しやすい定番のD。勝負の日にはハイパーも。'],
+ BTFJ:['リポビタンDライト','リポビタンD','一緒に過ごす時間に、気軽に選べる1本58kcal。']
+};
+
+// ===== イメージキャラクター(ボトル擬人化・オリジナル) =====
+// ロゴやラベル文字は描かず、茶色の瓶＋金キャップの汎用ボトルに表情と小物を付けている
+const CH = {
+ ASPR:{line:'狙いは一つ。本番で決める。', c:'#D93A26', eye:'focus', mo:'flat', acc:['scope'], arm:'down'},
+ ASPJ:{line:'いま、最高に楽しいところ。', c:'#3A6FD9', eye:'dot', mo:'smile', acc:['phones'], arm:'down'},
+ ASFR:{line:'締切3時間前。ここからが本番。', c:'#FF7A1A', eye:'wide', mo:'grin', acc:['flame','band'], arm:'up'},
+ ASFJ:{line:'思いついたら、もう止まらない。', c:'#A64CD9', eye:'spark', mo:'o', acc:['beret','stars'], arm:'one'},
+ ATPR:{line:'勝ち筋は見えてる。あとはやるだけ。', c:'#1F8A70', eye:'focus', mo:'smirk', acc:['headset','board'], arm:'down'},
+ ATPJ:{line:'準備の日が、いちばん楽しい。', c:'#E84A7F', eye:'happy', mo:'grin', cheek:1, acc:['band','fan'], arm:'down'},
+ ATFR:{line:'よっしゃ、いくぞ!', c:'#D93A26', eye:'wide', mo:'grin', acc:['band','badge'], arm:'up'},
+ ATFJ:{line:'みんなで、かんぱーい!', c:'#F5A300', eye:'happy', mo:'grin', cheek:1, acc:['party','fire'], arm:'one'},
+ BSPR:{line:'今日も、いつもの時間に。', c:'#2E86C1', eye:'focus', mo:'smile', acc:['sweat','drop'], arm:'down'},
+ BSPJ:{line:'急がない。ていねいに。', c:'#6B8E23', eye:'sleepy', mo:'smile', acc:['bandana','glasses'], arm:'down'},
+ BSFR:{line:'見えないところで、もう一歩。', c:'#34495E', eye:'dot', mo:'smirk', acc:['scarf','note'], arm:'down'},
+ BSFJ:{line:'好きだから、続いてる。', c:'#E07A5F', eye:'sleepy', mo:'smile', cheek:1, acc:['beanie'], arm:'down'},
+ BTPR:{line:'みんなの段取りは、まかせて。', c:'#2A9D8F', eye:'dot', mo:'smile', acc:['glasses','board'], arm:'down'},
+ BTPJ:{line:'いつでも、ここにいるよ。', c:'#E8A300', eye:'happy', mo:'smile', cheek:1, acc:['rays'], arm:'wave'},
+ BTFR:{line:'いける、いける!', c:'#2364AA', eye:'wide', mo:'grin', acc:['ballcap','whistle'], arm:'one'},
+ BTFJ:{line:'一緒にがんばろ〜。', c:'#FF6F91', eye:'happy', mo:'grin', cheek:1, acc:['pom'], arm:'up'}
+};
+
+function charaSVG(code){
+  const k = CH[code], c = k.c, O = '#3A1A08', E = '#2A1608';
+  const s = 'stroke="'+O+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"';
+  const LX = 48, RX = 72, EY = 92, MY = 106;
+  const has = a => k.acc.indexOf(a) >= 0;
+  let back = '', front = '', hand = '';
+  // 腕
+  const arms = {
+    down:[[28,108,16,126],[92,108,104,126]],
+    up:[[28,104,12,84],[92,104,108,84]],
+    one:[[28,108,16,126],[92,104,108,82]],
+    wave:[[28,104,14,88],[92,108,104,126]]
+  }[k.arm];
+  let armSVG = arms.map(a => '<path d="M'+a[0]+' '+a[1]+' Q'+((a[0]+a[2])/2)+' '+(a[1]+(a[3]>a[1]?-2:6))+' '+a[2]+' '+a[3]+'" fill="none" stroke="'+O+'" stroke-width="5" stroke-linecap="round"/>').join('');
+  const L = arms[0], R = arms[1];
+  // 目
+  const eyes = {
+    dot:'<circle cx="'+LX+'" cy="'+EY+'" r="3.6" fill="'+E+'"/><circle cx="'+RX+'" cy="'+EY+'" r="3.6" fill="'+E+'"/>',
+    focus:'<path d="M'+(LX-5)+' '+EY+' h10 M'+(RX-5)+' '+EY+' h10" stroke="'+E+'" stroke-width="3.6" stroke-linecap="round"/><path d="M'+(LX-6)+' '+(EY-9)+' L'+(LX+5)+' '+(EY-6)+' M'+(RX+6)+' '+(EY-9)+' L'+(RX-5)+' '+(EY-6)+'" stroke="'+E+'" stroke-width="2.6" stroke-linecap="round"/>',
+    wide:'<circle cx="'+LX+'" cy="'+EY+'" r="6" fill="#fff" stroke="'+E+'" stroke-width="2"/><circle cx="'+RX+'" cy="'+EY+'" r="6" fill="#fff" stroke="'+E+'" stroke-width="2"/><circle cx="'+(LX+1)+'" cy="'+EY+'" r="3" fill="'+E+'"/><circle cx="'+(RX-1)+'" cy="'+EY+'" r="3" fill="'+E+'"/><path d="M'+(LX-6)+' '+(EY-11)+' L'+(LX+5)+' '+(EY-8)+' M'+(RX+6)+' '+(EY-11)+' L'+(RX-5)+' '+(EY-8)+'" stroke="'+E+'" stroke-width="2.6" stroke-linecap="round"/>',
+    happy:'<path d="M'+(LX-5)+' '+(EY+2)+' Q'+LX+' '+(EY-5)+' '+(LX+5)+' '+(EY+2)+' M'+(RX-5)+' '+(EY+2)+' Q'+RX+' '+(EY-5)+' '+(RX+5)+' '+(EY+2)+'" fill="none" stroke="'+E+'" stroke-width="3" stroke-linecap="round"/>',
+    spark:'<circle cx="'+LX+'" cy="'+EY+'" r="4.6" fill="'+E+'"/><circle cx="'+RX+'" cy="'+EY+'" r="4.6" fill="'+E+'"/><circle cx="'+(LX+1.6)+'" cy="'+(EY-1.6)+'" r="1.7" fill="#fff"/><circle cx="'+(RX+1.6)+'" cy="'+(EY-1.6)+'" r="1.7" fill="#fff"/>',
+    sleepy:'<path d="M'+(LX-5)+' '+(EY-1)+' Q'+LX+' '+(EY+4)+' '+(LX+5)+' '+(EY-1)+' M'+(RX-5)+' '+(EY-1)+' Q'+RX+' '+(EY+4)+' '+(RX+5)+' '+(EY-1)+'" fill="none" stroke="'+E+'" stroke-width="3" stroke-linecap="round"/>'
+  }[k.eye];
+  // 口
+  const mouth = {
+    smile:'<path d="M54 '+MY+' Q60 '+(MY+6)+' 66 '+MY+'" fill="none" stroke="'+E+'" stroke-width="2.8" stroke-linecap="round"/>',
+    grin:'<path d="M52 '+(MY-2)+' H68 Q67 '+(MY+9)+' 60 '+(MY+9)+' Q53 '+(MY+9)+' 52 '+(MY-2)+' Z" fill="'+E+'"/><path d="M55 '+(MY+5)+' Q60 '+(MY+2)+' 65 '+(MY+5)+' Q60 '+(MY+9)+' 55 '+(MY+5)+'Z" fill="#E86A5A"/>',
+    flat:'<path d="M55 '+(MY+1)+' H65" stroke="'+E+'" stroke-width="2.8" stroke-linecap="round"/>',
+    o:'<ellipse cx="60" cy="'+(MY+2)+'" rx="3.6" ry="4.2" fill="'+E+'"/>',
+    smirk:'<path d="M54 '+(MY+1)+' Q61 '+(MY+5)+' 67 '+(MY-2)+'" fill="none" stroke="'+E+'" stroke-width="2.8" stroke-linecap="round"/>'
+  }[k.mo];
+  const cheek = k.cheek ? '<ellipse cx="'+(LX-7)+'" cy="'+(EY+9)+'" rx="4.5" ry="2.8" fill="#F4A3A3" opacity=".8"/><ellipse cx="'+(RX+7)+'" cy="'+(EY+9)+'" rx="4.5" ry="2.8" fill="#F4A3A3" opacity=".8"/>' : '';
+
+  // 小物
+  if (has('rays')) back += '<g stroke="'+c+'" stroke-width="3.5" stroke-linecap="round"><path d="M60 -6 V-14"/><path d="M40 0 L33 -6"/><path d="M80 0 L87 -6"/><path d="M30 14 L21 12"/><path d="M90 14 L99 12"/></g>';
+  if (has('fire')) back += '<g stroke="'+c+'" stroke-width="2.6" stroke-linecap="round"><path d="M22 6 v-8 M22 6 l6 -5 M22 6 l-6 -5 M22 6 l7 3 M22 6 l-7 3"/><path d="M100 18 v-7 M100 18 l5 -4 M100 18 l-5 -4 M100 18 l6 3 M100 18 l-6 3"/></g><circle cx="22" cy="6" r="2" fill="'+c+'"/><circle cx="100" cy="18" r="2" fill="'+c+'"/>';
+  if (has('stars')) back += '<g fill="'+c+'"><path d="M18 40 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5Z"/><path d="M102 30 l2 4.5 4.5 2 -4.5 2 -2 4.5 -2 -4.5 -4.5 -2 4.5 -2Z"/><path d="M98 62 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5Z"/></g>';
+  if (has('flame')) back += '<path d="M60 -12 C70 -2 76 2 72 10 L48 10 C44 2 52 -2 54 -8 C56 -3 58 -2 60 -12Z" fill="#FF8A1F" '+s+'/><path d="M60 -2 C64 2 66 5 64 9 H56 C54 5 58 3 60 -2Z" fill="#FFD23F"/>';
+
+  if (has('scope')) front += '<circle cx="'+RX+'" cy="'+EY+'" r="10" fill="none" stroke="'+c+'" stroke-width="3.5"/><path d="M'+(RX+10)+' '+EY+' H93" stroke="'+c+'" stroke-width="3.5" stroke-linecap="round"/><path d="M'+RX+' '+(EY-6)+' v-2 M'+RX+' '+(EY+6)+' v2" stroke="'+c+'" stroke-width="1.6"/>';
+  if (has('glasses')) front += '<g fill="none" stroke="'+O+'" stroke-width="2.4"><circle cx="'+LX+'" cy="'+EY+'" r="8.5"/><circle cx="'+RX+'" cy="'+EY+'" r="8.5"/><path d="M'+(LX+8.5)+' '+EY+' H'+(RX-8.5)+'"/></g>';
+  if (has('phones')) front += '<path d="M38 34 Q38 -2 60 -2 Q82 -2 82 34" fill="none" stroke="'+c+'" stroke-width="5" stroke-linecap="round"/><rect x="32" y="26" width="11" height="18" rx="4" fill="'+c+'" '+s+'/><rect x="77" y="26" width="11" height="18" rx="4" fill="'+c+'" '+s+'/>';
+  if (has('headset')) front += '<path d="M40 30 Q40 0 60 0 Q80 0 80 30" fill="none" stroke="'+O+'" stroke-width="3.5" stroke-linecap="round"/><rect x="76" y="24" width="9" height="14" rx="3" fill="'+c+'" '+s+'/><path d="M84 36 Q88 70 70 '+(MY-4)+'" fill="none" stroke="'+O+'" stroke-width="2.5"/><circle cx="68" cy="'+(MY-4)+'" r="3" fill="'+c+'" stroke="'+O+'" stroke-width="1.5"/>';
+  if (has('band')) front += '<rect x="42" y="14" width="36" height="7" rx="2" fill="'+(code==='ATPJ'?'#fff':c)+'" '+s+'/>'+(code==='ATPJ'?'<path d="M48 17.5 h24" stroke="'+c+'" stroke-width="3" stroke-dasharray="4 3"/>':'')+'<path d="M78 16 L92 10 L88 18 L94 24 L78 19" fill="'+(code==='ATPJ'?'#fff':c)+'" '+s+'/>';
+  if (has('sweat')) front += '<rect x="42" y="14" width="36" height="8" rx="3" fill="'+c+'" '+s+'/><path d="M46 18 h28" stroke="#fff" stroke-width="2"/>';
+  if (has('drop')) front += '<path d="M86 64 C80 72 82 78 86 78 C90 78 92 72 86 64Z" fill="#8FD3FF" stroke="'+O+'" stroke-width="1.8"/>';
+  if (has('bandana')) front += '<path d="M40 22 Q60 2 80 22 Z" fill="'+c+'" '+s+'/><path d="M42 21 H78" stroke="'+O+'" stroke-width="2.5"/><circle cx="52" cy="15" r="1.6" fill="#fff"/><circle cx="62" cy="11" r="1.6" fill="#fff"/><circle cx="70" cy="16" r="1.6" fill="#fff"/><path d="M79 21 L90 26 L84 30 Z" fill="'+c+'" '+s+'/>';
+  if (has('beret')) front += '<ellipse cx="56" cy="8" rx="22" ry="8" fill="'+c+'" '+s+'/><path d="M56 0 v-5" stroke="'+O+'" stroke-width="3" stroke-linecap="round"/>';
+  if (has('beanie')) front += '<path d="M40 24 V14 Q40 -2 60 -2 Q80 -2 80 14 V24 Z" fill="'+c+'" '+s+'/><rect x="38" y="18" width="44" height="9" rx="3" fill="#fff" '+s+'/><circle cx="60" cy="-5" r="6" fill="#fff" '+s+'/>';
+  if (has('party')) front += '<path d="M46 12 L60 -14 L74 12 Z" fill="'+c+'" '+s+'/><path d="M52 2 L68 2 M49 8 L71 8" stroke="#fff" stroke-width="2.5"/><circle cx="60" cy="-15" r="4" fill="#FF6F91" '+s+'/>';
+  if (has('ballcap')) front += '<path d="M40 22 Q40 0 60 0 Q80 0 80 22 Z" fill="'+c+'" '+s+'/><path d="M78 20 Q96 18 100 24 L78 26 Z" fill="'+c+'" '+s+'/><circle cx="60" cy="1" r="2.4" fill="#fff"/>';
+  if (has('scarf')) front += '<path d="M70 52 L80 78 L70 80 L63 56" fill="'+c+'" '+s+'/><path d="M42 40 Q60 50 78 40 L80 52 Q60 62 40 52 Z" fill="'+c+'" '+s+'/>';
+  if (has('whistle')) front += '<path d="M46 50 Q60 66 74 50" fill="none" stroke="'+c+'" stroke-width="2.5"/><rect x="54" y="60" width="14" height="9" rx="4" fill="#C9CED6" '+s+'/>';
+  if (has('badge')) front += '<circle cx="80" cy="134" r="8" fill="'+c+'" '+s+'/><text x="80" y="138.5" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="sans-serif">C</text>';
+
+  if (has('board')) hand += '<g transform="translate('+(R[2]-8)+','+(R[3]-14)+')"><rect width="18" height="24" rx="2" fill="#F7E7C6" '+s+'/><rect x="5" y="-3" width="8" height="5" rx="1" fill="'+c+'" stroke="'+O+'" stroke-width="1.6"/><path d="M4 8 h10 M4 13 h10 M4 18 h7" stroke="'+c+'" stroke-width="2"/></g>';
+  if (has('note')) hand += '<g transform="translate('+(L[2]-10)+','+(L[3]-14)+')"><rect width="16" height="21" rx="2" fill="#fff" '+s+'/><path d="M4 6 h8 M4 11 h8 M4 16 h5" stroke="'+c+'" stroke-width="1.8"/></g>';
+  if (has('fan')) hand += '<g transform="translate('+L[2]+','+L[3]+')"><path d="M0 0 L-4 -10" stroke="'+O+'" stroke-width="3"/><circle cx="-6" cy="-20" r="12" fill="'+c+'" '+s+'/><circle cx="-6" cy="-20" r="5" fill="#fff"/></g>';
+  if (has('pom')) hand += [L,R].map(a => '<g transform="translate('+a[2]+','+a[3]+')" fill="'+c+'" stroke="'+O+'" stroke-width="2"><circle r="8"/><circle cx="-6" cy="-5" r="5"/><circle cx="6" cy="-5" r="5"/><circle cx="0" cy="-9" r="5"/></g>').join('');
+
+  return '<svg viewBox="0 -20 120 182" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+T[code].n+'のキャラクター">' +
+    back +
+    armSVG +
+    '<ellipse cx="46" cy="156" rx="9" ry="5" fill="'+O+'"/><ellipse cx="74" cy="156" rx="9" ry="5" fill="'+O+'"/>' +
+    '<path d="M46 24 H74 V44 Q74 52 84 58 Q92 63 92 74 V142 Q92 152 82 152 H38 Q28 152 28 142 V74 Q28 63 36 58 Q46 52 46 44 Z" fill="#8A3E12" '+s+'/>' +
+    '<path d="M35 76 V138" stroke="#C0702F" stroke-width="5" stroke-linecap="round" opacity=".7"/>' +
+    '<rect x="28" y="72" width="64" height="50" fill="#FFF4E0" '+s+'/>' +
+    '<rect x="28" y="72" width="64" height="6" fill="'+c+'" '+s+'/><rect x="28" y="116" width="64" height="6" fill="'+c+'" '+s+'/>' +
+    '<rect x="44" y="6" width="32" height="20" rx="4" fill="#E8B33A" '+s+'/>' +
+    '<path d="M50 10 v12 M56 10 v12 M62 10 v12 M68 10 v12" stroke="#B8861E" stroke-width="2"/>' +
+    eyes + cheek + mouth + front + hand +
+    '</svg>';
+}
+
+// ===== タイプ別の詳しい分析・相性・ミッション =====
+const X = {
+ ASPR:{sum:'普段は静かでも、狙いを決めた瞬間にスイッチが入るタイプ。ゴールから逆算して準備を整え、本番の一日にすべてを出し切ります。結果で語りたい気持ちが強く、ムダな動きを嫌う「静かな勝負師」です。',
+  str:['目標に向けて、力を一点に集中できる','本番で実力を出し切れる','準備の段取りがうまい'],
+  weak:['本番以外の日はエンジンがかかりにくい','一度に背負い込みすぎて、終わったあとにどっと疲れる','結果が出ないと自分を責めがち'],
+  style:['試験日から逆算して計画を立て、直前に一気に仕上げる','自分の担当をきっちり決めて、黙々と結果を出す','ひとりで作戦を練り直してから動く'],
+  match:['BTFR','張りつめた本番前に、ちょうどいい一言をくれる相手。'],
+  mission:'次の「本番の日」をカレンダーに書き、その3日前に「準備完了チェック」の予定を入れる。'},
+ ASPJ:{sum:'自分の世界に深く潜り、作る時間そのものを楽しむタイプ。段取りを組むところからワクワクし、集中すると何時間でも没頭できます。完成度より「自分が納得できたか」を大事にする職人肌です。',
+  str:['一つのことに深く集中できる','こだわりを形にする力がある','準備の工程も楽しめる'],
+  weak:['没頭しすぎて、時間や休憩を忘れがち','こだわるほど締切がギリギリになる','途中で人に見せるのが苦手'],
+  style:['作業時間をまとめて確保して、一気に深く取り組む','任された部分を高いクオリティで仕上げる','いったん手を止めて、やり方を組み立て直す'],
+  match:['ATPR','こだわりをゴールにつなげる段取りを、一緒に考えてくれる。'],
+  mission:'作業を始める前に「今日はここまで」と終わりの時間を決めて、タイマーをセットする。'},
+ ASFR:{sum:'締切が見えた瞬間に覚醒するタイプ。追い込まれるほど頭が冴え、ひとりで一気に仕上げて結果を出します。計画どおりより「その場の判断」で勝ってきた人です。',
+  str:['短時間で驚くほどの集中力を出せる','追い込まれても冷静に判断できる','結果へのこだわりが強い'],
+  weak:['余裕があると後回しにしがち','締切が重なるとキャパを超えやすい','前日に夜ふかししがちで、翌日に響く'],
+  style:['締切前の数日で一気に仕上げる','最後の追い込みで頼りにされる','とにかく手を動かして突破口を探す'],
+  match:['BSPR','早めのスタートを自然に引き出してくれる、コツコツ派。'],
+  mission:'締切の3日前に「15分だけ手をつける日」を作って、最初の一歩を早める。'},
+ ASFJ:{sum:'ひらめきで動き、夢中になると時間を忘れるタイプ。好きなことには驚くほどのエネルギーを注ぎ、気づけば朝になっていることも。結果より「楽しかったか」が頑張る理由です。',
+  str:['発想が自由で、アイデアが次々に出る','好きなことへの集中力がずば抜けている','楽しみながら成長できる'],
+  weak:['興味が移ると、一気に冷めることがある','興味のないことは後回しになりがち','生活リズムが崩れやすい'],
+  style:['気分が乗ったタイミングで一気に進める','アイデア出しや企画の場面で輝く','場所や気分を変えて、ひらめきを待つ'],
+  match:['BTPR','ひらめきを、現実の段取りに落としてくれる頼れる相棒。'],
+  mission:'夢中になれる時間を週に1回、予定として先にブロックしておく。'},
+ ATPR:{sum:'ゴールから逆算して作戦を立て、チームを勝ちに導くタイプ。メンバーの得意を見極めて役割を振り、本番に向けて全員のピークを合わせます。「勝つための段取り」を考えるのが好きな司令塔です。',
+  str:['全体を見渡して作戦を立てられる','人の強みを生かした役割分担がうまい','本番に向けてチームをまとめられる'],
+  weak:['計画どおりに進まないとイライラしやすい','結果を求めるあまり、周りにプレッシャーをかけがち','自分の休みを後回しにしやすい'],
+  style:['チームの発表やコンペで本領を発揮する','進行管理と役割分担を引き受ける','作戦を組み直して、全員に共有する'],
+  match:['ASPJ','任せた部分を、高いクオリティで仕上げてくれる職人。'],
+  mission:'次のチーム作業で、メンバー一人ひとりに「ここが助かった」と一言伝える。'},
+ ATPJ:{sum:'みんなが楽しめる場を計画し、準備の時間から盛り上げるタイプ。本番の成功はもちろん、そこに向かうワクワクをみんなで共有することに喜びを感じます。学祭やイベントで中心にいる人です。',
+  str:['人を巻き込んで場をつくれる','準備の段取りを楽しく進められる','みんなの気持ちを一つにできる'],
+  weak:['引き受けすぎて、キャパオーバーになりがち','全員の意見を聞こうとして、決めきれないことがある','お祭りのあとに燃え尽きやすい'],
+  style:['みんなで集まる勉強会を企画する','イベントや準備の計画役になる','仲間に声をかけて、みんなで乗り切る'],
+  match:['BSFR','見えないところで準備を支えてくれる、心強い裏方。'],
+  mission:'次のイベントや集まりの準備で、自分以外に任せる仕事を1つ決める。'},
+ ATFR:{sum:'先頭に立ち、勢いでチームを引っ張るタイプ。考えるより先に動き、その背中でみんなを本気にさせます。本番に強く、ここ一番で頼りにされるリーダーです。',
+  str:['行動力と決断力がある','本番やプレッシャーに強い','チームの士気を一気に上げられる'],
+  weak:['勢いで突っ走って、周りが置いていかれることがある','細かい準備や確認を飛ばしがち','負けず嫌いで、悔しさを引きずることも'],
+  style:['試験前に仲間を集めて、一気に追い込む','先頭に立って最初の一歩を踏み出す','自分が真っ先に動いて流れを変える'],
+  match:['BTPJ','突っ走ったあとに、チームが戻れる場所を守ってくれる。'],
+  mission:'本番前に「確認リスト」を3つだけ書き出して、出発前にチェックする。'},
+ ATFJ:{sum:'場を明るくして、みんなで盛り上がるのが得意なタイプ。その場のノリとひらめきで空気を変え、頑張る時間を楽しい思い出に変えてしまいます。いるだけでチームが明るくなる人です。',
+  str:['場の空気を一瞬で明るくできる','誰とでもすぐに打ち解けられる','ピンチも楽しさに変えられる'],
+  weak:['楽しい方に流されやすい','地道な作業が続くと飽きやすい','盛り上げ役に疲れて、ひとりになりたくなることも'],
+  style:['友達とワイワイしながら進めると捗る','ムードづくりと声かけを担当する','笑いに変えて、みんなの肩の力を抜く'],
+  match:['ASPR','盛り上がった勢いを、狙った結果につなげてくれる。'],
+  mission:'今週、地道な作業を1つ選んで、友達と「一緒にやる時間」を作る。'},
+ BSPR:{sum:'毎日の習慣を崩さず、目標に向けて着実に積み上げるタイプ。派手さはなくても、気づけば誰よりも遠くまで進んでいます。「継続は力なり」を体現する努力の人です。',
+  str:['決めたことを毎日続けられる','計画を立てて着実に実行できる','長期的な目標に強い'],
+  weak:['予定が崩れると調子を崩しやすい','休むことに罪悪感を感じがち','自分の成長に気づきにくい'],
+  style:['毎日決まった時間に少しずつ進める','安定して成果を出し続ける','計画を見直して、できることから再開する'],
+  match:['ATFJ','積み上げの毎日に、楽しい刺激を持ち込んでくれる。'],
+  mission:'1週間続いたことを1つ書き出して、自分で自分を認める日を作る。'},
+ BSPJ:{sum:'自分のやり方を守り、ていねいに続けるタイプ。周りのペースに流されず、自分が納得できるまで手間をかけます。続けること自体を楽しめる、安定感の人です。',
+  str:['自分のペースを崩さず続けられる','ていねいで、仕事にムラがない','一つのことを深く極められる'],
+  weak:['急な予定変更が苦手','頼まれごとでペースを乱されがち','こだわるほどスピードが落ちる'],
+  style:['自分のルーティンで静かに進める','正確さが求められる作業で信頼される','いつものやり方に戻って立て直す'],
+  match:['ATFR','自分では踏み出しにくい一歩を、勢いで引っ張ってくれる。'],
+  mission:'いつものルーティンに「5分だけの新しいこと」を1つ足してみる。'},
+ BSFR:{sum:'人には見せず、工夫を重ねて着実に結果へ近づくタイプ。やり方は柔軟に変えながらも、目標だけはぶらしません。気づいたら成果を出している、静かな実力派です。',
+  str:['状況に合わせて、やり方を工夫できる','人知れず努力を続けられる','結果へのこだわりが強い'],
+  weak:['頑張りを人に見せないので、評価されにくい','ひとりで抱え込みがち','弱音を吐くのが苦手'],
+  style:['すき間時間を使って、自分なりのやり方で積み上げる','見えないところで抜けを埋める','黙って作戦を変えて、もう一度挑む'],
+  match:['ATPJ','人知れぬ努力を、みんなの前で輝かせてくれる。'],
+  mission:'今やっている努力を1つ、信頼できる人に話してみる。'},
+ BSFJ:{sum:'気分で選びつつ、好きなことを無理なく長く続けるタイプ。頑張りすぎないのに、なぜか続いている。その「ちょうどよさ」が最大の武器です。',
+  str:['無理せず長く続けられる','気分の切り替えがうまい','好きなことを見つける嗅覚がある'],
+  weak:['締切のあることはエンジンがかかりにくい','目標を決めるのが苦手','周りのペースに焦ることがある'],
+  style:['気が向いたタイミングで少しずつ進める','場の空気をゆるめる癒やし役になる','一度離れて、気分が戻るのを待つ'],
+  match:['ATPR','ゆるさを保ったまま、ゴールまで連れていってくれる。'],
+  mission:'「これだけは毎日やる」という、1分でできる小さな目標を1つ決める。'},
+ BTPR:{sum:'段取りよくメンバーを支え、チームの成果を支えるタイプ。目立つことより、みんなが力を出せる環境をつくることにやりがいを感じます。いないと回らない、チームの要です。',
+  str:['先回りして準備ができる','全体のスケジュールを管理できる','人のために粘り強く動ける'],
+  weak:['自分のことを後回しにしがち','頼まれると断れない','感謝されないと疲れがたまりやすい'],
+  style:['ノートや資料をまとめて、みんなに共有する','スケジュール管理や連絡役を引き受ける','タスクを整理して、優先順位を決め直す'],
+  match:['ASFJ','自分にない発想で、チームに新しい風を吹かせてくれる。'],
+  mission:'今週は「自分のための予定」を1つ、ほかの予定より先に入れる。'},
+ BTPJ:{sum:'チームの雰囲気を守り、みんなが戻ってこられる場所をつくるタイプ。長く続く関係や活動を大切にし、変わらずそこにいてくれる安心感があります。',
+  str:['チームの雰囲気を安定させられる','長く続く関係を築ける','誰の話も否定せずに聞ける'],
+  weak:['波風を立てたくなくて、意見を飲み込みがち','急な変化にすぐ対応するのは苦手','人の悩みを自分のことのように抱えやすい'],
+  style:['仲間と定期的に集まって、一緒に進める','メンバーの調子に気を配る','みんなで話し合える場をつくる'],
+  match:['ATFR','安定したチームに、前へ進む勢いを足してくれる。'],
+  mission:'次のミーティングで、自分の意見を最初に1つ言ってみる。'},
+ BTFR:{sum:'友達の頑張りに気づき、その場で声をかけて背中を押すタイプ。人の成長や成功を、自分のことのように喜べる頼れる応援役です。',
+  str:['人の変化や頑張りによく気づく','その場に合った言葉をかけられる','人を結果まで導ける'],
+  weak:['人のことばかりで、自分の目標が後回しになる','期待しすぎて、相手にプレッシャーをかけることも','自分が応援されるのは苦手'],
+  style:['友達と教え合いながら進める','メンバーのやる気を引き出す担当になる','声をかけ合って、みんなで立て直す'],
+  match:['ASPR','本番に挑む背中を、全力で押したくなる相手。'],
+  mission:'自分の目標を1つ決めて、応援してくれそうな人に宣言する。'},
+ BTFJ:{sum:'気づくとまわりに人が集まるタイプ。一緒に過ごす時間のなかで、自然とみんなの頑張りを応援しています。頑張る空気を「ゆるく、楽しく」してくれる人です。',
+  str:['誰とでも自然体で付き合える','その場を和ませられる','人の頑張りを素直に応援できる'],
+  weak:['流されて、自分のやりたいことを後回しにしがち','締切ギリギリになることがある','はっきり断るのが苦手'],
+  style:['学食やカフェで、友達と一緒に進める','みんなをつなぐ潤滑油になる','誰かと話しながら、ゆっくり考える'],
+  match:['BSPR','のんびりペースに、ほどよいリズムをくれる。'],
+  mission:'友達と「今週がんばること」を1つずつ言い合ってみる。'}
+};
+const STYLE_LABELS = ['勉強・課題','チームでは','ピンチのとき'];
+
+function renderAnalysis(code){
+  const x = X[code];
+  $('xsum').textContent = x.sum;
+  const fill = (id, arr) => { const ul = $(id); ul.innerHTML = ''; arr.forEach(s => { const li = document.createElement('li'); li.textContent = s; ul.appendChild(li); }); };
+  fill('xstr', x.str); fill('xweak', x.weak);
+  const dl = $('xstyle'); dl.innerHTML = '';
+  x.style.forEach((s,i) => { const d = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = STYLE_LABELS[i]; const dd = document.createElement('dd'); dd.textContent = s; d.append(dt, dd); dl.appendChild(d); });
+  const [mc, why] = x.match;
+  $('xmimg').innerHTML = charaSVG(mc);
+  $('xmname').textContent = T[mc].n;
+  $('xmtag').textContent = labelOf(mc).join(' × ');
+  $('xmwhy').textContent = why;
+  $('xmatch').onclick = () => showResult(mc, false);
+  $('xmission').textContent = x.mission;
+}
+
+// ===== SNSで共有 =====
+const SHARE_URL = 'https://onigirikoya-eng.github.io/fight-type16/';
+const TAGS = '#FIGHTTYPE16 #頑張り方診断';
+
+function shareTexts(code){
+  const t = T[code], x = X[code], n = t.n, line = CH[code].line, mt = T[x.match[0]].n, prod = M[code][0];
+  return {
+    x: '私の頑張り方は【' + n + '】でした!\n「' + line + '」\n相性がいいのは【' + mt + '】らしい。\nあなたは何タイプ?\n' + TAGS,
+    line: '頑張り方診断やってみたら【' + n + '】だった!\n相性いいのは【' + mt + '】なんだって。\nやってみて、何タイプだったか教えて\n' + SHARE_URL,
+    threads: '頑張り方を16タイプに分ける「FIGHT TYPE 16」をやってみた。\n\n私は【' + n + '】(' + labelOf(code).join('×') + ')\n' + x.sum.split('。')[0] + '。\n\n強み:' + x.str[0] + '\n相性がいいのは【' + mt + '】\n私に合うリポDは「' + prod + '」らしい。\n\nみんなは何タイプ?\n' + TAGS + '\n' + SHARE_URL,
+    insta: '私の頑張り方は【' + n + '】\n「' + line + '」\n\n強み:' + x.str.join(' / ') + '\n相性がいいのは【' + mt + '】\n今週のミッション:' + x.mission + '\n\n私に合うリポDは「' + prod + '」\nあなたは何タイプ?\n\n' + TAGS + ' #大学生 #リポビタンD',
+    tiktok: '頑張り方診断したら【' + n + '】だった…当たってる?\n相性いいのは【' + mt + '】\n' + TAGS + ' #大学生 #診断 #リポビタンD'
+  };
+}
+
+// 共有画像(1080×1920、ストーリーズ・TikTok向け)
+async function makeShareImage(code){
+  const W = 1080, H = 1920, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const g = c.getContext('2d'), t = T[code], x = X[code];
+  const DISP = '"Dela Gothic One","Zen Kaku Gothic New",sans-serif', BODY = '"Zen Kaku Gothic New","Hiragino Sans",sans-serif';
+  try { await Promise.all([document.fonts.load('80px "Dela Gothic One"'), document.fonts.load('700 40px "Zen Kaku Gothic New"')]); } catch(e){}
+  g.fillStyle = '#F1F4F8'; g.fillRect(0,0,W,H);
+  g.fillStyle = '#D93A26'; g.fillRect(0,0,W,18); g.fillRect(0,H-18,W,18);
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.font = '60px ' + DISP; g.fillStyle = '#14202E';
+  const head = ['FIGHT ','TYPE',' 16'], hw = head.map(s => g.measureText(s).width), hx0 = (W - hw.reduce((a,b)=>a+b,0)) / 2;
+  let hx = hx0; g.textAlign = 'left';
+  head.forEach((s,i) => { g.fillStyle = i === 1 ? '#D93A26' : '#14202E'; g.fillText(s, hx, 150); hx += hw[i]; });
+  g.textAlign = 'center';
+  g.font = '700 46px ' + BODY; g.fillStyle = '#5B6877'; g.fillText('私の頑張り方は', W/2, 260);
+  // タイプ名(幅に合わせて縮小)
+  let fs = 120; g.font = fs + 'px ' + DISP;
+  while (g.measureText(t.n).width > 960 && fs > 64) { fs -= 4; g.font = fs + 'px ' + DISP; }
+  g.fillStyle = '#14202E'; g.fillText(t.n, W/2, 400);
+  // 軸バッジ
+  const labs = labelOf(code); g.font = '700 38px ' + BODY;
+  const pw = labs.map(s => g.measureText(s).width + 56), gap = 18; let px = (W - pw.reduce((a,b)=>a+b,0) - gap*3) / 2;
+  labs.forEach((s,i) => {
+    g.strokeStyle = '#D93A26'; g.lineWidth = 4; g.beginPath(); g.roundRect(px, 450, pw[i], 66, 33); g.stroke();
+    g.fillStyle = '#D93A26'; g.fillText(s, px + pw[i]/2, 497); px += pw[i] + gap;
+  });
+  // キャラ
+  const svg = charaSVG(code).replace('<svg ', '<svg width="440" height="667" ');
+  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  await new Promise((ok, ng) => { img.onload = ok; img.onerror = ng; });
+  g.drawImage(img, (W-440)/2, 560, 440, 667);
+  // ひとこと
+  g.font = '700 50px ' + BODY; g.fillStyle = '#14202E'; g.fillText('「' + CH[code].line + '」', W/2, 1300);
+  // 強み
+  g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(90, 1350, W-180, 300, 28); g.fill();
+  g.textAlign = 'left'; g.font = '700 34px ' + BODY; g.fillStyle = '#D93A26'; g.fillText('強み', 140, 1415);
+  g.font = '500 38px ' + BODY; g.fillStyle = '#14202E';
+  x.str.forEach((s,i) => g.fillText('・' + s, 140, 1480 + i*60));
+  g.textAlign = 'center';
+  g.font = '700 44px ' + BODY; g.fillStyle = '#14202E'; g.fillText('相性がいいのは【' + T[x.match[0]].n + '】', W/2, 1740);
+  g.font = '700 36px ' + BODY; g.fillStyle = '#D93A26'; g.fillText(TAGS + '  あなたも診断してみて', W/2, 1820);
+  g.font = '400 24px ' + BODY; g.fillStyle = '#5B6877'; g.fillText('大学生による企画案です。大正製薬の公式ページではありません。', W/2, 1870);
+  return new Promise(ok => c.toBlob(ok, 'image/png'));
+}
+
+async function copyText(txt, ta){
+  try { await navigator.clipboard.writeText(txt); return true; }
+  catch(e){ try { ta.focus(); ta.select(); return document.execCommand('copy'); } catch(e2){ return false; } }
+}
+
+const SNS_GUIDE = {
+  insta: ['Instagramに投稿', ['「画像を保存」で結果の画像を保存する','「投稿文をコピー」を押す','Instagramでストーリーズか投稿を作り、保存した画像を選ぶ','投稿文を貼り付ける(ストーリーズならリンクスタンプに診断のURLを貼ると、友達が診断できる)']],
+  tiktok: ['TikTokに投稿', ['「画像を保存」で結果の画像を保存する','「投稿文をコピー」を押す','TikTokの投稿画面で「写真」を選び、保存した画像を選ぶ','説明欄に投稿文を貼り付ける']]
+};
+let shareBlob = null, shareImgUrl = null;
+async function openShareModal(kind){
+  const code = lastCode, [title, steps] = SNS_GUIDE[kind];
+  $('mTitle').textContent = title;
+  const ol = $('mSteps'); ol.innerHTML = ''; steps.forEach(s => { const li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+  $('mCap').value = shareTexts(code)[kind];
+  $('mMsg').textContent = '画像を作っています…';
+  $('shareModal').hidden = false;
+  try {
+    shareBlob = await makeShareImage(code);
+    if (shareImgUrl) URL.revokeObjectURL(shareImgUrl);
+    shareImgUrl = URL.createObjectURL(shareBlob); $('mImg').src = shareImgUrl;
+    $('mMsg').textContent = '';
+  } catch(e){ $('mMsg').textContent = '画像を作れませんでした。スクリーンショットで保存してください。'; }
+  const file = shareBlob && new File([shareBlob], 'fight-type16.png', {type:'image/png'});
+  $('mNative').hidden = !(file && navigator.canShare && navigator.canShare({files:[file]}));
+}
+function closeShareModal(){ $('shareModal').hidden = true; }
+
+function setupShare(){
+  $('mClose').addEventListener('click', closeShareModal);
+  $('shareModal').addEventListener('click', e => { if (e.target.id === 'shareModal') closeShareModal(); });
+  $('sInsta').addEventListener('click', () => openShareModal('insta'));
+  $('sTiktok').addEventListener('click', () => openShareModal('tiktok'));
+  $('mCopy').addEventListener('click', async () => {
+    $('mMsg').textContent = (await copyText($('mCap').value, $('mCap'))) ? '投稿文をコピーしました。' : 'コピーできませんでした。投稿文を長押しして選択してください。';
+  });
+  $('mSave').addEventListener('click', async () => {
+    if (!shareBlob) return;
+    const dl = (window.claude && window.claude.use) ? await window.claude.use('downloads') : null;
+    if (!dl){
+      try { const a = document.createElement('a'); a.href = shareImgUrl; a.download = 'fight-type16_' + lastCode + '.png'; document.body.appendChild(a); a.click(); a.remove(); $('mMsg').textContent = '画像を保存しました。保存されない場合は、画像を長押しして保存してください。'; }
+      catch(e){ $('mMsg').textContent = '画像を長押し(右クリック)して保存してください。'; }
+      return;
+    }
+    try { await dl.save({filename:'fight-type16_' + T[lastCode].n + '.png', data:shareBlob}); $('mMsg').textContent = '画像を保存しました。'; }
+    catch(e){ $('mMsg').textContent = e && e.code === 'declined' ? '' : '保存できませんでした。画像を長押し(右クリック)して保存してください。'; }
+  });
+  $('mNative').addEventListener('click', async () => {
+    try { await navigator.share({files:[new File([shareBlob], 'fight-type16.png', {type:'image/png'})], text:$('mCap').value}); }
+    catch(e){}
+  });
+  $('sUrl').addEventListener('click', async () => {
+    const ta = $('copyArea'); ta.value = SHARE_URL;
+    $('copyMsg').textContent = (await copyText(SHARE_URL, ta)) ? '診断のURLをコピーしました。' : 'コピーできませんでした: ' + SHARE_URL;
+  });
+}
+function updateShareLinks(code){
+  const s = shareTexts(code), e = encodeURIComponent;
+  $('sX').href = 'https://twitter.com/intent/tweet?text=' + e(s.x) + '&url=' + e(SHARE_URL);
+  $('sLine').href = 'https://line.me/R/share?text=' + e(s.line);
+  $('sThreads').href = 'https://www.threads.net/intent/post?text=' + e(s.threads);
+}
+
+const $ = id => document.getElementById(id);
+const sections = ['intro','quiz','result','all'];
+function show(id){ sections.forEach(s => $(s).hidden = s !== id); window.scrollTo({top:0}); }
+
+let idx = 0, score, lastCode = null;
+function resetScore(){ score = {A:0,B:0,S:0,T:0,P:0,F:0,R:0,J:0}; }
+
+function renderQ(){
+  const q = QS[idx];
+  $('pn').textContent = (idx+1) + ' / ' + QS.length;
+  $('pb').style.width = (idx / QS.length * 100) + '%';
+  $('qt').textContent = q.q;
+  const box = $('opts'); box.innerHTML = '';
+  [q.a, q.b].forEach(o => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opt'; b.textContent = o[0];
+    b.addEventListener('click', () => { score[o[1]]++; idx++; idx < QS.length ? renderQ() : finish(); });
+    box.appendChild(b);
+  });
+}
+
+function finish(){
+  const pick = (x,y) => score[x] >= score[y] ? x : y;
+  const code = pick('A','B') + pick('S','T') + pick('P','F') + pick('R','J');
+  showResult(code, true);
+}
+
+function labelOf(code){
+  return [AX.pace[code[0]], AX.who[code[1]], AX.plan[code[2]], AX.drive[code[3]]];
+}
+
+function showResult(code, withMeters){
+  lastCode = code;
+  const t = T[code], labs = labelOf(code);
+  $('rbadge').innerHTML = '';
+  labs.forEach(l => { const s = document.createElement('span'); s.textContent = l; $('rbadge').appendChild(s); });
+  $('rname').textContent = t.n;
+  $('rdesc').textContent = t.d;
+  $('rcimg').innerHTML = charaSVG(code);
+  $('rcname').textContent = '「' + CH[code].line + '」';
+  const pm = M[code];
+  $('pmain').textContent = pm[0];
+  $('pkind').textContent = PR[pm[0]][0] + ' / ' + PR[pm[0]][1];
+  $('pimg').src = PR[pm[0]][2]; $('pimg').alt = pm[0];
+  $('pwhy').textContent = pm[2];
+  $('psub').innerHTML = '';
+  const sb = document.createElement('b'); sb.textContent = 'サブ: ' + pm[1];
+  $('psub').append(sb, ' (' + PR[pm[1]][1] + ')');
+  renderAnalysis(code);
+  updateShareLinks(code);
+  const bx = $('pbuys'); bx.innerHTML = '';
+  [[pm[0],'buy','大正製薬ダイレクト(公式通販)で '+pm[0]+' を見る'],[pm[1],'buy sub2','サブ: '+pm[1]+' を見る']].forEach(([nm,cl,tx]) => {
+    const a = document.createElement('a'); a.className = cl; a.href = PR[nm][3]; a.target = '_blank'; a.rel = 'noopener'; a.textContent = tx; bx.appendChild(a);
+  });
+  const m = $('meters'); m.innerHTML = '';
+  m.hidden = !withMeters;
+  if (withMeters){
+    const pairs = [['pace','A','B'],['who','S','T'],['plan','P','F'],['drive','R','J']];
+    pairs.forEach(([k,l,r]) => {
+      const total = score[l] + score[r];
+      const pos = total ? (score[r] / total) * 100 : 50;
+      const el = document.createElement('div'); el.className = 'meter';
+      const leftOn = score[l] >= score[r];
+      el.innerHTML = '<span class="l ' + (leftOn?'on':'') + '">' + AX[k][l] + '</span>' +
+        '<div class="track"><i class="dot" style="left:' + Math.min(94,Math.max(6,pos)) + '%"></i></div>' +
+        '<span class="r ' + (!leftOn?'on':'') + '">' + AX[k][r] + '</span>';
+      m.appendChild(el);
+    });
+  }
+  $('copyMsg').textContent = ''; $('copyArea').hidden = true;
+  show('result');
+}
+
+function resultText(){
+  const t = T[lastCode], x = X[lastCode];
+  return '【FIGHT TYPE 16】私の頑張り方は「' + t.n + '」(' + labelOf(lastCode).join('×') + ')\n' +
+    x.sum + '\n\n強み:' + x.str.join('/') + '\n相性のいいタイプ:' + T[x.match[0]].n +
+    '\n今週のがんばりミッション:' + x.mission + '\n\nおすすめのリポD:' + M[lastCode][0] + '(サブ:' + M[lastCode][1] + ')';
+}
+
+function buildGrid(){
+  const g = $('grid'); g.innerHTML = '';
+  Object.keys(T).forEach(code => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'card';
+    const small = document.createElement('small'); small.textContent = labelOf(code).join(' × ');
+    const name = document.createElement('b'); name.textContent = T[code].n;
+    const em = document.createElement('em'); em.textContent = M[code][0];
+    const ph = document.createElement('div'); ph.className = 'ph2 ch';
+    ph.innerHTML = charaSVG(code);
+    const cx = document.createElement('div'); cx.className = 'cx'; cx.append(small, name, em);
+    const row = document.createElement('div'); row.className = 'row'; row.append(ph, cx);
+    b.append(row);
+    b.addEventListener('click', () => showResult(code, false));
+    g.appendChild(b);
+  });
+}
+
+$('start').addEventListener('click', () => { idx = 0; resetScore(); show('quiz'); renderQ(); });
+$('retry').addEventListener('click', () => { show('intro'); });
+$('toAll').addEventListener('click', () => show('all'));
+$('toAll2').addEventListener('click', () => show('all'));
+$('backIntro').addEventListener('click', () => show('intro'));
+function buildTable(){
+  const tb = $('ptb'); tb.innerHTML = '';
+  Object.keys(PR).forEach(name => {
+    const mains = Object.keys(M).filter(c => M[c][0] === name).map(c => T[c].n);
+    const subs = Object.keys(M).filter(c => M[c][1] === name).map(c => T[c].n);
+    const tr = document.createElement('tr');
+    [name, mains.join('、') || '-', subs.join('、') || '-'].forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+}
+resetScore(); buildGrid(); buildTable(); setupShare();
+$('brandHome').addEventListener('click', () => { if (typeof ans !== 'undefined') ans = []; idx = 0; $('shareModal').hidden = true; show('intro'); });
+$('parade').innerHTML = Object.keys(CH).map(c => '<div>' + charaSVG(c) + '</div>').join('');
+</script>
+
+</body></html>
