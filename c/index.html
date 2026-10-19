@@ -18,7 +18,7 @@
   --bg:#0E1622; --surface:#17222F; --ink:#EDF1F6; --muted:#9AA8B8; --line:#2A3a4B;
   --accent:#FF6A52; --accent-ink:#1A0A06; --gold:#F5BA2E; --soft:#2B1E1F; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding-inline:16px;padding-block:20px 56px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding-inline:clamp(22px,6.5vw,32px);padding-block:20px 56px}
 .wrap{max-width:640px;margin-inline:auto;display:flex;flex-direction:column;gap:20px;min-width:0}
 header.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .brand{font-family:var(--display);font-size:15px;letter-spacing:.04em}
@@ -174,6 +174,21 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
 #mSteps{margin:0;padding-left:1.3em;font-size:14px;display:flex;flex-direction:column;gap:4px}
 .mact{display:flex;flex-direction:column;gap:8px}
 .mlab{font-size:13px;font-weight:700;color:var(--muted)}
+
+.rhero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;background:linear-gradient(180deg,var(--soft),var(--bg));border-radius:24px;padding:22px 14px 24px;margin-bottom:14px}
+.rlead{margin:0;font-size:14px;font-weight:700;color:var(--muted)}
+.bubble{position:relative;background:var(--surface);color:var(--ink);border:2.5px solid var(--ink);border-radius:20px;padding:10px 18px;font-weight:700;font-size:17px;line-height:1.55;max-width:330px;text-wrap:balance;word-break:auto-phrase;margin-top:10px}
+.bubble::after{content:'';position:absolute;left:50%;bottom:-9px;width:15px;height:15px;background:var(--surface);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.rcimg{width:min(56vw,230px);aspect-ratio:120/182;margin-top:10px}
+.rcimg svg{width:100%;height:100%;display:block}
+.rhero .rname{margin:6px 0 4px}
+.rhero .badge{justify-content:center}
+@media (prefers-reduced-motion:no-preference){.rhero .rcimg{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}.rhero .bubble{animation:pop .5s .15s cubic-bezier(.2,1.4,.4,1) both}}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.sprev{display:flex;gap:14px;align-items:center;background:var(--bg);border-radius:12px;padding:10px}
+.sprev img{width:96px;border-radius:8px;border:1px solid var(--line);background:#fff;flex:0 0 auto}
+.sprev .sx{display:flex;flex-direction:column;gap:8px;min-width:0}
+.sprev .sx p{margin:0;font-size:13px;color:var(--muted)}
 .compliance{background:var(--soft);border-radius:12px;padding:12px 14px}
 @media (max-width:420px){.rows div{grid-template-columns:1fr;gap:2px}.meter{grid-template-columns:4.6em 1fr 4.6em}}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
@@ -209,10 +224,14 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
   </section>
 
   <section id="result" hidden>
-    <div class="badge" id="rbadge"></div>
-    <h2 class="rname" id="rname"></h2>
+    <div class="rhero">
+      <p class="rlead">あなたの頑張り方は</p>
+      <div class="bubble" id="rcname"></div>
+      <div class="rcimg" id="rcimg"></div>
+      <h2 class="rname" id="rname"></h2>
+      <div class="badge" id="rbadge"></div>
+    </div>
     <p class="rdesc" id="rdesc"></p>
-    <div class="chara"><div class="cimg" id="rcimg"></div><div class="ctx"><span class="clab">イメージキャラクター</span><b class="cn" id="rcname"></b></div></div>
     <div class="meters" id="meters" style="margin-block:20px"></div>
     <div class="ana">
       <section class="blk"><h3>あなたはこんな人</h3><p id="xsum"></p></section>
@@ -237,6 +256,7 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
     </div>
     <section class="share">
       <h3>結果をSNSで共有</h3>
+      <div class="sprev"><img id="sPrevImg" alt="あなたのキャラクターの共有画像"><div class="sx"><p>この画像が共有用の結果画像です。X・LINE・Threadsで送ると、リンクにもあなたのキャラが表示されます。</p><button class="ghost" id="sSave" type="button">画像を保存</button></div></div>
       <div class="sns">
         <button class="snsb ig" id="sInsta" type="button">Instagram</button>
         <a class="snsb ln" id="sLine" href="#" target="_blank" rel="noopener">LINE</a>
@@ -282,7 +302,7 @@ details.how ul{margin:8px 0 0;padding-left:1.2em}
     <p class="note" id="mMsg" aria-live="polite"></p>
   </div>
 </div>
-  <p class="note compliance">診断は楽しむためのもので、効果や効能を示すものではありません。提案はイメージ案です。商品の成分・分類は、パッケージや公式サイトで確認してください。実施前に大正製薬の事前確認が必要です(効果の保証・気分への直接効果・体験談の表現は使用しない)。</p>
+  <p class="note compliance">診断は楽しむためのもので、効果や効能を示すものではありません。提案はイメージ案です。商品の成分・分類は、パッケージや公式サイトで確認してください。</p>
 </div>
 
 <script>
@@ -377,22 +397,22 @@ const M = {
 // ===== イメージキャラクター(ボトル擬人化・オリジナル) =====
 // ロゴやラベル文字は描かず、茶色の瓶＋金キャップの汎用ボトルに表情と小物を付けている
 const CH = {
- ASPR:{line:'狙いは一つ。本番で決める。', c:'#D93A26', eye:'focus', mo:'flat', acc:['scope'], arm:'down'},
- ASPJ:{line:'いま、最高に楽しいところ。', c:'#3A6FD9', eye:'dot', mo:'smile', acc:['phones'], arm:'down'},
- ASFR:{line:'締切3時間前。ここからが本番。', c:'#FF7A1A', eye:'wide', mo:'grin', acc:['flame','band'], arm:'up'},
- ASFJ:{line:'思いついたら、もう止まらない。', c:'#A64CD9', eye:'spark', mo:'o', acc:['beret','stars'], arm:'one'},
- ATPR:{line:'勝ち筋は見えてる。あとはやるだけ。', c:'#1F8A70', eye:'focus', mo:'smirk', acc:['headset','board'], arm:'down'},
- ATPJ:{line:'準備の日が、いちばん楽しい。', c:'#E84A7F', eye:'happy', mo:'grin', cheek:1, acc:['band','fan'], arm:'down'},
- ATFR:{line:'よっしゃ、いくぞ!', c:'#D93A26', eye:'wide', mo:'grin', acc:['band','badge'], arm:'up'},
- ATFJ:{line:'みんなで、かんぱーい!', c:'#F5A300', eye:'happy', mo:'grin', cheek:1, acc:['party','fire'], arm:'one'},
- BSPR:{line:'今日も、いつもの時間に。', c:'#2E86C1', eye:'focus', mo:'smile', acc:['sweat','drop'], arm:'down'},
- BSPJ:{line:'急がない。ていねいに。', c:'#6B8E23', eye:'sleepy', mo:'smile', acc:['bandana','glasses'], arm:'down'},
- BSFR:{line:'見えないところで、もう一歩。', c:'#34495E', eye:'dot', mo:'smirk', acc:['scarf','note'], arm:'down'},
- BSFJ:{line:'好きだから、続いてる。', c:'#E07A5F', eye:'sleepy', mo:'smile', cheek:1, acc:['beanie'], arm:'down'},
- BTPR:{line:'みんなの段取りは、まかせて。', c:'#2A9D8F', eye:'dot', mo:'smile', acc:['glasses','board'], arm:'down'},
- BTPJ:{line:'いつでも、ここにいるよ。', c:'#E8A300', eye:'happy', mo:'smile', cheek:1, acc:['rays'], arm:'wave'},
- BTFR:{line:'いける、いける!', c:'#2364AA', eye:'wide', mo:'grin', acc:['ballcap','whistle'], arm:'one'},
- BTFJ:{line:'一緒にがんばろ〜。', c:'#FF6F91', eye:'happy', mo:'grin', cheek:1, acc:['pom'], arm:'up'}
+ ASPR:{line:'狙った獲物は逃さない。ファイトも"一発"で決める。', c:'#D93A26', eye:'focus', mo:'flat', acc:['scope'], arm:'down'},
+ ASPJ:{line:'こだわりは無限大。締切は…見なかったことにする。', c:'#3A6FD9', eye:'dot', mo:'smile', acc:['phones'], arm:'down'},
+ ASFR:{line:'"あと3日"は余裕。"あと3時間"からが本番。', c:'#FF7A1A', eye:'wide', mo:'grin', acc:['flame','band'], arm:'up'},
+ ASFJ:{line:'ひらめきは突然やってくる。だいたい夜中の2時に。', c:'#A64CD9', eye:'spark', mo:'o', acc:['beret','stars'], arm:'one'},
+ ATPR:{line:'勝ち筋は見えてる。あとはみんなの"やる気筋"を鍛えるだけ。', c:'#1F8A70', eye:'focus', mo:'smirk', acc:['headset','board'], arm:'down'},
+ ATPJ:{line:'本番より前夜祭、前夜祭より準備祭。', c:'#E84A7F', eye:'happy', mo:'grin', cheek:1, acc:['band','fan'], arm:'down'},
+ ATFR:{line:'作戦会議は3秒、ダッシュは全力。', c:'#D93A26', eye:'wide', mo:'grin', acc:['band','badge'], arm:'up'},
+ ATFJ:{line:'シーンとした空気、ぜんぶ"ドーン"に変えます。', c:'#F5A300', eye:'happy', mo:'grin', cheek:1, acc:['party','fire'], arm:'one'},
+ BSPR:{line:'継続は力なり。今日で連続365日目なり。', c:'#2E86C1', eye:'focus', mo:'smile', acc:['sweat','drop'], arm:'down'},
+ BSPJ:{line:'急がば回れ。回りすぎて、まだ1周目。', c:'#6B8E23', eye:'sleepy', mo:'smile', acc:['bandana','glasses'], arm:'down'},
+ BSFR:{line:'努力は見せない。でも成績は見せる。', c:'#34495E', eye:'dot', mo:'smirk', acc:['scarf','note'], arm:'down'},
+ BSFJ:{line:'細く、長く、ゆるく、しぶとく。', c:'#E07A5F', eye:'sleepy', mo:'smile', cheek:1, acc:['beanie'], arm:'down'},
+ BTPR:{line:'縁の下の力持ち。ついでにみんなの予定も持ってます。', c:'#2A9D8F', eye:'dot', mo:'smile', acc:['glasses','board'], arm:'down'},
+ BTPJ:{line:'迷ったらこっち。いつでもここで点灯中。', c:'#E8A300', eye:'happy', mo:'smile', cheek:1, acc:['rays'], arm:'wave'},
+ BTFR:{line:'声援はタダ。だから毎日、大盤振る舞い。', c:'#2364AA', eye:'wide', mo:'grin', acc:['ballcap','whistle'], arm:'one'},
+ BTFJ:{line:'ファイト一発!…の前に、まずおやつ一発。', c:'#FF6F91', eye:'happy', mo:'grin', cheek:1, acc:['pom'], arm:'up'}
 };
 
 function charaSVG(code){
@@ -590,13 +610,14 @@ function renderAnalysis(code){
 // ===== SNSで共有 =====
 const SHARE_URL = 'https://fight-type16.vercel.app/c/';
 const TAGS = '#FIGHTTYPE16 #頑張り方診断';
+const typeUrl = code => SHARE_URL + 'r/' + code + '.html';
 
 function shareTexts(code){
   const t = T[code], x = X[code], n = t.n, line = CH[code].line, mt = T[x.match[0]].n, prod = M[code][0];
   return {
     x: '私の頑張り方は【' + n + '】でした!\n「' + line + '」\n相性がいいのは【' + mt + '】らしい。\nあなたは何タイプ?\n' + TAGS,
-    line: '頑張り方診断やってみたら【' + n + '】だった!\n相性いいのは【' + mt + '】なんだって。\nやってみて、何タイプだったか教えて\n' + SHARE_URL,
-    threads: '頑張り方を16タイプに分ける「FIGHT TYPE 16」をやってみた。\n\n私は【' + n + '】(' + labelOf(code).join('×') + ')\n' + x.sum.split('。')[0] + '。\n\n強み:' + x.str[0] + '\n相性がいいのは【' + mt + '】\n私に合うリポDは「' + prod + '」らしい。\n\nみんなは何タイプ?\n' + TAGS + '\n' + SHARE_URL,
+    line: '頑張り方診断やってみたら【' + n + '】だった!\n相性いいのは【' + mt + '】なんだって。\nやってみて、何タイプだったか教えて\n' + typeUrl(code),
+    threads: '頑張り方を16タイプに分ける「FIGHT TYPE 16」をやってみた。\n\n私は【' + n + '】(' + labelOf(code).join('×') + ')\n' + x.sum.split('。')[0] + '。\n\n強み:' + x.str[0] + '\n相性がいいのは【' + mt + '】\n私に合うリポDは「' + prod + '」らしい。\n\nみんなは何タイプ?\n' + TAGS + '\n' + typeUrl(code),
     insta: '私の頑張り方は【' + n + '】\n「' + line + '」\n\n強み:' + x.str.join(' / ') + '\n相性がいいのは【' + mt + '】\n今週のミッション:' + x.mission + '\n\n私に合うリポDは「' + prod + '」\nあなたは何タイプ?\n\n' + TAGS + ' #大学生 #リポビタンD',
     tiktok: '頑張り方診断したら【' + n + '】だった…当たってる?\n相性いいのは【' + mt + '】\n' + TAGS + ' #大学生 #診断 #リポビタンD'
   };
@@ -634,7 +655,11 @@ async function makeShareImage(code){
   await new Promise((ok, ng) => { img.onload = ok; img.onerror = ng; });
   g.drawImage(img, (W-440)/2, 560, 440, 667);
   // ひとこと
-  g.font = '700 50px ' + BODY; g.fillStyle = '#14202E'; g.fillText('「' + CH[code].line + '」', W/2, 1300);
+  g.font = '700 48px ' + BODY; g.fillStyle = '#14202E';
+  { const txt = '「' + CH[code].line + '」', rows = []; let cur = '';
+    for (const ch of txt){ if (g.measureText(cur + ch).width > 940){ rows.push(cur); cur = ch; } else cur += ch; }
+    rows.push(cur); const y0 = rows.length > 1 ? 1270 : 1300;
+    rows.slice(0,2).forEach((r,i) => g.fillText(r, W/2, y0 + i*60)); }
   // 強み
   g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(90, 1350, W-180, 300, 28); g.fill();
   g.textAlign = 'left'; g.font = '700 34px ' + BODY; g.fillStyle = '#D93A26'; g.fillText('強み', 140, 1415);
@@ -698,6 +723,11 @@ function setupShare(){
     try { await navigator.share({files:[new File([shareBlob], 'fight-type16.png', {type:'image/png'})], text:$('mCap').value}); }
     catch(e){}
   });
+  $('sSave').addEventListener('click', () => {
+    if (!shareImgUrl) return;
+    const a = document.createElement('a'); a.href = shareImgUrl; a.download = 'fight-type16_' + lastCode + '.png'; document.body.appendChild(a); a.click(); a.remove();
+    $('copyMsg').textContent = '画像を保存しました。保存されない場合は、画像を長押しして保存してください。';
+  });
   $('sUrl').addEventListener('click', async () => {
     const ta = $('copyArea'); ta.value = SHARE_URL;
     $('copyMsg').textContent = (await copyText(SHARE_URL, ta)) ? '診断のURLをコピーしました。' : 'コピーできませんでした: ' + SHARE_URL;
@@ -705,7 +735,7 @@ function setupShare(){
 }
 function updateShareLinks(code){
   const s = shareTexts(code), e = encodeURIComponent;
-  $('sX').href = 'https://twitter.com/intent/tweet?text=' + e(s.x) + '&url=' + e(SHARE_URL);
+  $('sX').href = 'https://twitter.com/intent/tweet?text=' + e(s.x) + '&url=' + e(typeUrl(code));
   $('sLine').href = 'https://line.me/R/share?text=' + e(s.line);
   $('sThreads').href = 'https://www.threads.net/intent/post?text=' + e(s.threads);
 }
@@ -839,7 +869,7 @@ function showResult(code, withMeters){
   $('rname').textContent = t.n;
   $('rdesc').textContent = t.d;
   $('rcimg').innerHTML = charaSVG(code);
-  $('rcname').textContent = '「' + CH[code].line + '」';
+  $('rcname').textContent = CH[code].line;
   const pm = M[code];
   $('pmain').textContent = pm[0];
   $('pkind').textContent = PR[pm[0]][0] + ' / ' + PR[pm[0]][1];
@@ -850,6 +880,8 @@ function showResult(code, withMeters){
   $('psub').append(sb, ' (' + PR[pm[1]][1] + ')');
   renderAnalysis(code);
   updateShareLinks(code);
+  $('sPrevImg').removeAttribute('src');
+  makeShareImage(code).then(b => { if (lastCode !== code) return; shareBlob = b; if (shareImgUrl) URL.revokeObjectURL(shareImgUrl); shareImgUrl = URL.createObjectURL(b); $('sPrevImg').src = shareImgUrl; }).catch(() => {});
   const bx = $('pbuys'); bx.innerHTML = '';
   [[pm[0],'buy','大正製薬ダイレクト(公式通販)で '+pm[0]+' を見る'],[pm[1],'buy sub2','サブ: '+pm[1]+' を見る']].forEach(([nm,cl,tx]) => {
     const a = document.createElement('a'); a.className = cl; a.href = PR[nm][3]; a.target = '_blank'; a.rel = 'noopener'; a.textContent = tx; bx.appendChild(a);
