@@ -44,8 +44,7 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .axp em{font-style:normal;white-space:nowrap}.axp .l{color:var(--accent)}.axp .r{color:#3A6FD9}
 .axp i{flex:1;min-width:12px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--accent),#3A6FD9)}
 .startwrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;margin:20px 0 22px}
-.tap{position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:2;font-family:'Murecho',var(--body);font-weight:700;font-size:20px;letter-spacing:.24em;padding:5px 16px 5px 21px;color:#fff;background:var(--accent);border-radius:999px;box-shadow:0 3px 8px rgba(0,0,0,.2)}
-.tap::after{content:'';position:absolute;left:50%;top:-7px;width:14px;height:14px;background:var(--accent);transform:translateX(-50%) rotate(45deg);border-radius:2px;z-index:-1}
+.tap{position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:2;width:92px;height:66px;display:flex;justify-content:center;padding-top:9px;padding-left:.24em;box-sizing:border-box;font-family:'Murecho',var(--body);font-weight:700;font-size:20px;line-height:1;letter-spacing:.24em;color:#fff;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 3px 6px rgba(0,0,0,.2))}
 @media (prefers-reduced-motion:no-preference){.tap{animation:tapbob 1.6s ease-in-out infinite}}
 @keyframes tapbob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
 .capbtn{width:168px;height:168px;border:0;padding:0;background:none;border-radius:50%;cursor:pointer;filter:drop-shadow(0 8px 14px rgba(20,32,46,.22));transition:transform .15s ease;font-family:'Murecho',var(--body)}
